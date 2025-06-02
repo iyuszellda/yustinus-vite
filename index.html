@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <link rel="canonical" href="https://www.yustinusmargiyuna.com/" />
+        <link
+            rel="preload"
+            href="/fonts/roboto.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Welcome to My Website. This website build with vite + react."
+        />
+        <title>Yustinus Margiyuna</title>
+        <style>
+            html {
+                background-color: #fff;
+                color: #000;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            #preloader {
+                height: 100vh;
+                width: 100vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: inherit;
+                color: inherit;
+                font-family: sans-serif;
+                z-index: 9999;
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="preloader">&nbsp;</div>
+        <div id="root"></div>
+        <script type="module" src="/src/main.jsx"></script>
+    </body>
+</html>

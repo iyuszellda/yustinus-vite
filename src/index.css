@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+    /* overide default font sans */
+    --font-*: initial;
+    --font-sans: "Roboto", "serif";
+    --font-display: "Poppins", "serif";
+}
