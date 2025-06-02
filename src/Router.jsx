@@ -9,29 +9,28 @@ import ProductList from "./components/product/ProductList";
 import ProductDetail from "./components/product/ProductDetail";
 import CrudIndex from "./components/crud/index";
 
-const router = createBrowserRouter(
-    [
-        {
-            path: "/",
-            element: <App />,
-            children: [
-                { index: true, element: <Home /> },
-                { path: "about", element: <About /> },
-                { path: "work", element: <Work /> },
-                { path: "experience", element: <Experience /> },
-                { path: "demo", element: <Demo /> },
-                { path: "demo/product", element: <ProductList /> },
-                { path: "demo/product/detail/:id", element: <ProductDetail /> },
-                { path: "demo/crud", element: <CrudIndex /> },
-            ],
-        },
-    ],
+const routes = [
     {
-        future: {
-            v7_startTransition: true, // Disable v7_startTransition for compatibility
-            v7_relativeSplatPath: true, // Disable v7_relativeSplatPath for compatibility
-        },
+        path: "/",
+        element: <App />,
+        children: [
+            { index: true, element: <Home /> },
+            { path: "about", element: <About /> },
+            { path: "work", element: <Work /> },
+            { path: "experience", element: <Experience /> },
+            { path: "demo", element: <Demo /> },
+            { path: "demo/product", element: <ProductList /> },
+            { path: "demo/product/detail/:id", element: <ProductDetail /> },
+            { path: "demo/crud", element: <CrudIndex /> },
+        ],
     },
-);
+];
+
+const router = createBrowserRouter(routes, {
+    future: {
+        v7_startTransition: true, // Disable v7_startTransition for compatibility
+        v7_relativeSplatPath: true, // Disable v7_relativeSplatPath for compatibility
+    },
+});
 
 export default router;
