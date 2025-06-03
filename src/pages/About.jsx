@@ -8,27 +8,28 @@ export default function About() {
                     About this website.
                 </h4>
                 <p className="text-sm tracking-wide leading-relaxed text-gray-700 dark:text-neutral-300">
-                    This website is using Vite + React with Tailwind CSS. The
-                    Navbar and the Footer uses the Roboto font, while the main
-                    sections use Poppins.
+                    I'm building this website that uses a JavaScript library for
+                    interfaces.
                 </p>
-                <p className="text-sm tracking-wide leading-relaxed text-gray-700 dark:text-neutral-300">
-                    In eu auctor arcu, in viverra purus. Quisque placerat ex ut
-                    ultrices fringilla. Etiam et nisl odio. Morbi erat velit,
-                    rutrum eu leo ut, posuere consectetur massa. Aenean justo
-                    urna, interdum vel velit varius, placerat dictum elit.
-                    Interdum et malesuada fames ac ante ipsum primis in
-                    faucibus. Aliquam at tortor interdum, venenatis lorem et,
-                    condimentum quam. Proin pharetra fermentum neque vel tempor.
-                    Aenean a eros semper augue auctor pellentesque laoreet eu
-                    augue. Suspendisse a scelerisque metus, et hendrerit purus.
-                    Mauris dictum massa eget venenatis elementum. Ut fringilla
-                    mauris ut rutrum interdum. Ut pretium augue quis nulla
-                    tristique, at dignissim dolor interdum. Vestibulum
-                    tincidunt, urna sed eleifend tincidunt, purus lectus
-                    tristique tortor, eu pharetra diam ipsum eu lacus. Duis
-                    euismod maximus elit non lobortis. Maecenas et odio vel
-                    libero placerat hendrerit.
+                <p className="text-sm tracking-wide leading-relaxed text-gray-800 dark:text-neutral-300">
+                    This website is built with Vite + React and styled using
+                    Tailwind CSS. The Navbar and Footer use the Roboto font,
+                    while the main sections use Poppins. The design is
+                    responsive, ensuring a seamless experience across devices.
+                    The website features a clean and modern layout, with a focus
+                    on usability and accessibility. It includes a dark mode
+                    toggle for enhanced user experience in different lighting
+                    conditions.
+                </p>
+                <p className="text-sm tracking-wide leading-relaxed text-gray-800 dark:text-neutral-300">
+                    The content is structured to provide clear information about
+                    the website's purpose and my background. The use of semantic
+                    HTML elements enhances accessibility and SEO, making it
+                    easier for search engines to index the content. The website
+                    is optimized for performance, ensuring fast loading times
+                    and smooth interactions. Overall, this website serves as a
+                    portfolio to showcase my skills and projects, while also
+                    providing a pleasant browsing experience for visitors.
                 </p>
             </div>
         </Case>
