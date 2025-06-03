@@ -6,9 +6,19 @@ export default function Home() {
         <Case>
             <div className="w-[90%] max-w-3xl mx-auto mt-10 flex flex-col gap-8">
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-semibold text-neutral-900 dark:text-neutral-200">
-                    Hi fellow developers, my name is Yustinus Margiyuna, and
-                    thanks for visiting my website!
+                    Hi fellow IT Enthusiasts, my name is Yustinus Margiyuna, and
+                    thanks for visiting my website.
                 </h1>
+                <p className="text-sm tracking-wide leading-relaxed text-gray-700 dark:text-neutral-300 my-4">
+                    I master several programming languages, such as PHP, .NET,
+                    and ReactJS, and I am currently learning Vite React with
+                    Tailwind CSS, Master SQL Server, MySQL, PostgreSQL, SQLite,
+                    and Oracle databases. I also have experience in making REST
+                    APIs, ETL, and DevOps deployment on CentOS servers via
+                    GitLab/GitHub. Have been experienced since the end of 2014
+                    until now. I have worked on various projects, including web
+                    development, database management, and API integration.
+                </p>
                 <p className="text-sm tracking-wide leading-relaxed text-gray-800 dark:text-neutral-300">
                     I'm a web developer passionate about building modern,
                     responsive, and user-friendly websites. I enjoy working with
