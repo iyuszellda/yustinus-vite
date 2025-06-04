@@ -40,7 +40,7 @@ export default function App() {
                     setPage={setPage}
                     loadingOnClick={loadingOnClick}
                 />
-                <main className="flex flex-col p-12 font-display min-h-screen pt-8 dark:bg-neutral-800 bg-neutral-200">
+                <main className="flex flex-col md:p-12 lg:p-12 font-display min-h-screen pt-8 dark:bg-neutral-800 bg-neutral-200">
                     {loading ? (
                         <div className="w-[90%] max-w-3xl mx-auto mt-10 flex flex-col space-y-4">
                             <Skeleton className="w-[40%] max-w-3xl h-15" />

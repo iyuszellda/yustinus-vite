@@ -25,11 +25,11 @@ export default function Demo() {
     ];
     return (
         <Case>
-            <div className="w-[100%] max-w-1xl mx-auto mt-10 flex flex-col gap-8">
+            <div className="w-[100%] max-w-1xl mx-auto mt-10 flex flex-col gap-8 p-4">
                 <div className="group relative pb-1 transition-all sm:gap-8 md:gap-4">
-                    <h2 className="text-3xl font-extrabold text-center text-gray-700 dark:text-white mb-12">
+                    <h3 className="hidden md:block lg:block text-2xl font-extrabold text-center text-gray-700 dark:text-white mb-12">
                         Demo Projects
-                    </h2>
+                    </h3>
                     <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {demoData.map((card, index) => (
                             <div

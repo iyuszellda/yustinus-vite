@@ -2,19 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
     return (
         <footer className="font-sans flex flex-col items-center text-center text-surface dark:bg-neutral-700 bg-neutral-100 text-neutral-900 dark:text-neutral-100 dark:border-t-1 dark:border-neutral-600 shadow-md">
             <div className="container pt-9">
-                <p className="mb-8 text-center text-neutral-800 dark:text-neutral-200">
-                    Thank's to Chat GPT, Copilot, Platzi Fake Store API for
-                    providing the inspiration and resources to create these
-                    application.
-                </p>
-                <p className="mb-8 text-center text-neutral-800 dark:text-neutral-200">
-                    Also thanks to brittanychiang.com for the inspiration and
-                    design ideas for this website.
-                </p>
-
                 <div className="mb-6 flex justify-center space-x-2">
                     <Link
                         aria-label="facebook"
@@ -127,9 +119,15 @@ export default function Footer() {
                     </Link>
                 </div>
             </div>
-
-            <div className="w-full p-4 text-center text-neutral-800 dark:text-neutral-200 duration-600 ease-in-out transition-all">
-                ©2025 Copyright:
+            <div className="w-full p-4 text-center text-neutral-800 dark:text-neutral-200">
+                <p className="text-sm flex justify-center space-x-2 text-neutral-800 dark:text-neutral-200">
+                    Thank's to Chat GPT, Copilot, Platzi Fake Store API for
+                    providing the inspiration and resources to create these
+                    application.
+                </p>
+            </div>
+            <div className="w-full text-sm p-4 text-center text-neutral-800 dark:text-neutral-200">
+                ©{year} Copyright:
                 <Link
                     aria-label="copyright"
                     to="#!"
