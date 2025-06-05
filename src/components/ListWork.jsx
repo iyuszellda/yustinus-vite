@@ -78,10 +78,16 @@ export default function ListWork() {
             description: `Built and maintained critical backend applications, ensuring smooth deployment and operation. Collaborated with cross-functional teams, including developers, designers, and product managers, to deliver high-quality software solutions for cellular companies in Indonesia.`,
             applications: [
                 {
-                    name: "BI Debts/Liabilities and Receivables CIMB Niaga",
+                    name: "BBT - Bintan",
                 },
                 {
-                    name: "Backend CRM Commonwealth",
+                    name: "Telin - Telkomsel",
+                },
+                {
+                    name: "Nokia SDP - Tri Indonesia",
+                },
+                {
+                    name: "CMP - Telkomsel",
                 },
             ],
         },
@@ -93,7 +99,6 @@ export default function ListWork() {
             applications: [
                 {
                     name: "Surat Online Bareskrim",
-                    link: "https://example.com/freelance-ecommerce",
                 },
             ],
         },
