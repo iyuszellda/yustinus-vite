@@ -57,13 +57,18 @@ export default function Navbar({
         setPage(clickedPage);
     };
 
+    const homeMobileClick = () => {
+        onLoading("home");
+        setIsOpen(false);
+    };
+
     return (
         <div className="sticky top-0 z-50 font-sans">
             <div className="block sm:hidden">
                 <nav className="dark:bg-neutral-700 bg-neutral-100 py-2 dark:border-b-1 dark:border-neutral-600 shadow-md p-4 sm:hidden">
                     <div className="flex justify-between items-center">
                         <Link
-                            onClick={() => onLoading("home")}
+                            onClick={homeMobileClick}
                             aria-label="logo"
                             className="flex items-center mr-4"
                             to="/"
@@ -74,7 +79,6 @@ export default function Navbar({
                                 className="w-7 h-7 rounded-full"
                             />
                         </Link>
-
                         {currentPage.map((link) => {
                             return (
                                 location.pathname == link.page && (
@@ -101,13 +105,14 @@ export default function Navbar({
 
                     {isOpen && (
                         <ul className="mt-4 space-y-2">
-                            {navLinks.map((link) => (
+                            {navLinks.map((link, index) => (
                                 <li
-                                    key={link.href}
+                                    key={index}
                                     onClick={() => setIsOpen(!isOpen)}
                                 >
                                     <NavLink
                                         onLoading={onLoading}
+                                        name={link.name}
                                         href={link.href}
                                         className="block text-gray-700 dark:text-gray-300 transition"
                                     >
