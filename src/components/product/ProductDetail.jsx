@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductApi from "../../lib/api/productApi";
 import SkeletonCard from "../skeleton/SkeletonCard";
@@ -8,6 +8,7 @@ export default function ProductDetail() {
     const [product, setProduct] = useState(null);
     const [mainImage, setMainImage] = useState("");
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -38,46 +39,56 @@ export default function ProductDetail() {
     }
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-10">
-            {/* Image Gallery */}
-            <div className="space-y-4">
-                <img
-                    src={mainImage}
-                    alt={product.title}
-                    className="rounded-lg object-contain w-full max-w-md mx-auto h-96"
-                />
-                <div className="flex gap-2 justify-center">
-                    {product.images.map((img, idx) => (
-                        <img
-                            key={idx}
-                            src={img}
-                            alt={`Thumbnail ${idx}`}
-                            onClick={() => setMainImage(img)}
-                            className={`w-16 h-16 rounded-md cursor-pointer border-2 ${
-                                img === mainImage
-                                    ? "border-blue-600"
-                                    : "border-transparent"
-                            }`}
-                        />
-                    ))}
-                </div>
-            </div>
-
-            {/* Product Info */}
-            <div className="space-y-6">
-                <h1 className="lg:text-3xl md:text-2xl font-bold text-gray-900 dark:text-white">
-                    {product.title}
-                </h1>
-                <p className="text-md text-slate-800 dark:text-slate-300 font-semibold">
-                    ${product.price}
-                </p>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
-                    {product.description}
-                </p>
-                <button className="text-xs px-5 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition">
-                    Add to Cart
+        <>
+            <div className="flex items-center px-4 py-4">
+                <button
+                    onClick={() => navigate(-1)}
+                    className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
+                >
+                    ← Back
                 </button>
             </div>
-        </div>
+            <div className="max-w-6xl mx-auto px-4 py-4 grid md:grid-cols-2 gap-5">
+                {/* Image Gallery */}
+                <div className="space-y-4">
+                    <img
+                        src={mainImage}
+                        alt={product.title}
+                        className="rounded-lg object-contain w-full max-w-md mx-auto h-96"
+                    />
+                    <div className="flex gap-2 justify-center">
+                        {product.images.map((img, idx) => (
+                            <img
+                                key={idx}
+                                src={img}
+                                alt={`Thumbnail ${idx}`}
+                                onClick={() => setMainImage(img)}
+                                className={`w-16 h-16 rounded-md cursor-pointer border-2 ${
+                                    img === mainImage
+                                        ? "border-blue-600"
+                                        : "border-transparent"
+                                }`}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Product Info */}
+                <div className="space-y-6">
+                    <h1 className="lg:text-3xl md:text-2xl font-bold text-gray-900 dark:text-white">
+                        {product.title}
+                    </h1>
+                    <p className="text-md text-slate-800 dark:text-slate-300 font-semibold">
+                        ${product.price}
+                    </p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                        {product.description}
+                    </p>
+                    <button className="text-xs px-5 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </>
     );
 }

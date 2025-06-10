@@ -154,7 +154,7 @@ export default function Navbar({
                             aria-label="dark"
                             onClick={() => toggleTheme()}
                             whileHover={{ scale: 1.1 }}
-                            className="text-white dark:text-neutral-700 fixed bottom-4 right-4 z-50 w-12 h-12 flex items-center justify-center bg-neutral-800 dark:bg-neutral-100 border rounded-full shadow-md transition duration-300"
+                            className="text-white dark:text-neutral-700 fixed bottom-4 right-4 z-50 w-12 h-12 flex items-center justify-center bg-neutral-800 dark:bg-neutral-100 rounded-full shadow-md transition duration-300"
                         >
                             <svg
                                 fill="currentColor"
@@ -178,7 +178,7 @@ export default function Navbar({
                             aria-label="light"
                             onClick={() => toggleTheme()}
                             whileHover={{ scale: 1.1 }}
-                            className="text-white dark:text-neutral-700 fixed bottom-4 right-4 z-50 w-12 h-12 flex items-center justify-center bg-neutral-800 dark:bg-neutral-100 border rounded-full shadow-md transition duration-300"
+                            className="text-white dark:text-neutral-700 fixed bottom-4 right-4 z-50 w-12 h-12 flex items-center justify-center bg-neutral-800 dark:bg-neutral-100 rounded-full shadow-md transition duration-300"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
