@@ -1,125 +1,178 @@
 import { useState, useEffect } from "react";
-import { Dialog } from "@headlessui/react";
+import Select from "react-select";
+import ProductApi from "../../lib/api/productApi";
 
-export default function ModalForm({ isOpen, onClose, onSubmit, initialData }) {
-    const [formData, setFormData] = useState({
+const ModalForm = ({ header, product, isOpen, onClose, onSave }) => {
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectImage, setSelectImage] = useState();
+    const [editedProduct, setEditedProduct] = useState({
         title: "",
         price: "",
         description: "",
+        images: "",
         categoryId: 1,
-        images: [""],
     });
 
-    const exampleImages = [
-        "https://i.imgur.com/1N3C1vL.jpeg",
-        "https://i.imgur.com/aY2Vzbm.jpg",
-        "https://i.imgur.com/RL3dAGg.png",
-    ];
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await ProductApi.get("/products");
+                setSelectImage(response.data);
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     useEffect(() => {
-        if (initialData) {
-            setFormData(initialData);
+        if (product) {
+            setSelectedOption(product);
+            if (header == 1) {
+                setEditedProduct({
+                    title: product.title || "",
+                    price: product.price || 0,
+                    description: product.description || "",
+                    categoryId: (product.category && product.category.id) || 1,
+                    images: product.images || "",
+                });
+            } else {
+                setEditedProduct({
+                    id: product.id,
+                    title: product.title || "",
+                    price: product.price || 0,
+                    description: product.description || "",
+                    categoryId: (product.category && product.category.id) || 1,
+                    images: product.images || "",
+                });
+            }
         }
-    }, [initialData]);
+    }, [product, header]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        setEditedProduct((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleSelectChange = (option) => {
+        setSelectedOption(option);
+        setEditedProduct((prev) => ({
+            ...prev,
+            images: option.images,
+        }));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        onSave(editedProduct);
         onClose();
     };
 
-    if (!isOpen) return null;
+    if (!isOpen || !product) return null;
 
     return (
-        <Dialog
-            open={isOpen}
-            onClose={() => onClose(false)}
-            className="relative z-50"
-        >
-            <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-
-            <div className="fixed inset-0 flex items-center justify-center p-4">
-                <Dialog.Panel className="bg-white dark:bg-gray-800 rounded p-6 max-w-sm w-full shadow-xl">
-                    <Dialog.Title className="text-lg font-bold mb-4 dark:text-white">
-                        Add New Product
-                    </Dialog.Title>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="p-3 fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h2 className="text-lg text-neutral-800 font-bold mb-4">
+                    {header == 1 ? "Add Product" : "Edit Product"}
+                </h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="title"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Title
+                        </label>
                         <input
+                            id="title"
+                            name="title"
                             type="text"
-                            placeholder="Title"
-                            className="w-full px-3 py-2 border rounded"
-                            value={formData.title}
-                            onChange={(e) =>
-                                setFormData({
-                                    ...formData,
-                                    title: e.target.value,
-                                })
-                            }
-                            required
+                            value={editedProduct.title}
+                            onChange={handleInputChange}
+                            className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
+                    </div>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="title"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Images
+                        </label>
+                        <Select
+                            options={selectImage}
+                            value={selectedOption}
+                            onChange={handleSelectChange}
+                            formatOptionLabel={({ title, images }) => (
+                                <div className="flex items-center gap-2">
+                                    <img
+                                        src={images}
+                                        alt={title}
+                                        className="w-6 h-6 rounded-full"
+                                    />
+                                    <span>{title}</span>
+                                </div>
+                            )}
+                            className="react-select-container"
+                            classNamePrefix="react-select"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="price"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Price
+                        </label>
                         <input
+                            id="price"
+                            name="price"
                             type="number"
-                            placeholder="Price"
-                            className="w-full px-3 py-2 border rounded"
-                            value={formData.price}
-                            onChange={(e) =>
-                                setFormData({
-                                    ...formData,
-                                    price: parseFloat(e.target.value),
-                                })
-                            }
-                            required
+                            value={editedProduct.price}
+                            onChange={handleInputChange}
+                            className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
+                    </div>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="description"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Description
+                        </label>
                         <textarea
-                            placeholder="Description"
-                            className="w-full px-3 py-2 border rounded"
-                            value={formData.description}
-                            onChange={(e) =>
-                                setFormData({
-                                    ...formData,
-                                    description: e.target.value,
-                                })
-                            }
-                            required
+                            id="description"
+                            name="description"
+                            value={editedProduct.description}
+                            onChange={handleInputChange}
+                            className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
-                        <select
-                            className="w-full px-3 py-2 border rounded"
-                            value={formData.categoryId}
-                            onChange={(e) =>
-                                setFormData({
-                                    ...formData,
-                                    categoryId: Number(e.target.value),
-                                })
-                            }
+                    </div>
+                    <div className="flex justify-end gap-2">
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className="px-4 py-2 bg-red-500 rounded hover:bg-red-600 text-white"
                         >
-                            <option value={1}>Clothes</option>
-                            <option value={2}>Electronics</option>
-                            <option value={3}>Furniture</option>
-                        </select>
-                        <select
-                            className="w-full px-3 py-2 border rounded"
-                            onChange={(e) =>
-                                setFormData({
-                                    ...formData,
-                                    images: [e.target.value],
-                                })
-                            }
-                        >
-                            {exampleImages.map((img, i) => (
-                                <option key={i} value={img}>
-                                    {img}
-                                </option>
-                            ))}
-                        </select>
+                            Cancel
+                        </button>
                         <button
                             type="submit"
-                            className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
+                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                         >
                             Save
                         </button>
-                    </form>
-                </Dialog.Panel>
+                    </div>
+                </form>
             </div>
-        </Dialog>
+        </div>
     );
-}
+};
+
+export default ModalForm;

@@ -1,119 +1,13 @@
+import Works from "../lib/json/works.json";
 export default function ListWork() {
-    const works = [
-        {
-            company: "ILCS",
-            role: "Fullstack Engineer, DevOps",
-            duration: "Oct 2020 - Present",
-            description: `Developed and maintained CI/CD pipelines, automated testing, and deployment processes. Also built and maintained Pelindo's applications, ensuring high availability and performance across the product suite.`,
-            applications: [
-                {
-                    name: "Dashboard IPC TPK",
-                    link: "https://dashboard.ipctpk.co.id",
-                },
-                {
-                    name: "CPC TPK",
-                    link: "https://cpctpk.ilcs.co.id",
-                },
-                {
-                    name: "MDM",
-                    link: "https://mdm.pelindo.co.id/",
-                },
-                {
-                    name: "P-Connect",
-                    link: "https://p-connect.pelindo.co.id",
-                },
-                {
-                    name: "Cartos Patimban",
-                },
-                {
-                    name: "Dashboard Gate Pass",
-                },
-                {
-                    name: "SRKO - Operation Indonesia Port",
-                },
-                {
-                    name: "SIMON TKBM",
-                    link: "https://simtkbm.pelindo.co.id",
-                },
-                {
-                    name: "Single Truck Identification Data Priok",
-                    link: "http://stid.priokport.co.id",
-                },
-                {
-                    name: "Single Truck Identification Data Nasional",
-                    link: "https://stid.pelindo.co.id",
-                },
-            ],
-        },
-        {
-            company: "Matahari Department Store",
-            role: "Frontend Engineer",
-            duration: "Jul 2019 - May 2020",
-            description: `Built and maintained reusable components for Matahari's frontend applications, ensuring high performance and accessibility standards. Collaborated with cross-functional teams to implement best practices in web development.`,
-            applications: [
-                {
-                    name: "Matahari E-commerce",
-                    link: "https://matahari.com",
-                },
-            ],
-        },
-        {
-            company: "Nawadata Solutions",
-            role: "Fullstack Developer",
-            duration: "Jan 2017 - Jul 2019",
-            description: `Developed and maintained critical backend services such as ETLs and databases. Worked closely with cross-functional teams, including developers and product managers, to deliver solutions for major banks in Indonesia.`,
-            applications: [
-                {
-                    name: "BI Debts/Liabilities and Receivables CIMB Niaga",
-                },
-                {
-                    name: "Backend CRM Commonwealth",
-                },
-            ],
-        },
-        {
-            company: "Indocode Technology",
-            role: "Fullstack Developer",
-            duration: "Nov 2014 - Jan 2017",
-            description: `Built and maintained critical backend applications, ensuring smooth deployment and operation. Collaborated with cross-functional teams, including developers, designers, and product managers, to deliver high-quality software solutions for cellular companies in Indonesia.`,
-            applications: [
-                {
-                    name: "BBT - Bintan",
-                },
-                {
-                    name: "Telin - Telkomsel",
-                },
-                {
-                    name: "Nokia SDP - Tri Indonesia",
-                },
-                {
-                    name: "CMP - Telkomsel",
-                },
-            ],
-        },
-        {
-            company: "Freelance",
-            role: "Fullstack Developer",
-            duration: "Jul 2020 - Sep 2020",
-            description: `Delivered responsive websites and web apps for various clients across e-commerce, blogs, and portfolios.`,
-            applications: [
-                {
-                    name: "Surat Online Bareskrim",
-                },
-            ],
-        },
-    ];
-
     return (
         <>
-            {works.map((work, index) => (
+            {Works.map((work, index) => (
                 <div
                     key={index}
-                    className="rounded-2xl p-4 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all duration-300 hover:shadow-md mb-6"
+                    className="hover:text-teal-800 dark:hover:text-teal-300 focus-visible:text-teal-300 group/link text-base leading-tight text-neutral-800 dark:text-neutral-200 rounded-2xl p-4 hover:bg-slate-300 dark:hover:bg-slate-800/50 transition-all duration-300 hover:shadow-lg group relative lg:hover:!opacity-100 lg:group-hover/list:opacity-50"
                 >
-                    <h3 className="text-neutral-800 dark:text-neutral-200 text-xl font-semibold">
-                        {work.company}
-                    </h3>
+                    <h3 className="font-semibold">{work.company}</h3>
                     <p className="text-sm text-gray-500 dark:text-neutral-400">
                         {work.role} · {work.duration}
                     </p>
@@ -121,16 +15,43 @@ export default function ListWork() {
                         {work.description}
                     </p>
                     {work.applications && (
-                        <ul className="text-xs mt-2 list-disc list-inside text-blue-700 dark:text-sky-200">
+                        <ul className="font-semibold text-xs mt-2 list-disc list-inside">
                             {work.applications.map((app, i) => (
-                                <li key={i}>
+                                <li
+                                    key={i}
+                                    className="mb-2 text-teal-950 dark:text-teal-300 hover:text-teal-700 dark:hover:text-teal-400 transition-colors duration-200"
+                                    aria-label={`Application: ${app.name}`}
+                                >
+                                    {app.link && (
+                                        <a
+                                            href={app.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`${app.name} (opens in a new tab)`}
+                                        >
+                                            {app.name}
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                                    clipRule="evenodd"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                    )}
+                                    {!app.link && <span>{app.name}</span>}
                                     <a
-                                        href={app.link}
+                                        href={app.detail.images}
                                         target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="hover:underline"
+                                        className="font-semibold text-sky-700 dark:text-sky-300 ml-2 items-center rounded-full bg-teal-500/10 px-3 py-1 text-xs leading-5"
                                     >
-                                        {app.name}
+                                        See Image
                                     </a>
                                 </li>
                             ))}

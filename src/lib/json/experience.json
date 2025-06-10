@@ -1,0 +1,47 @@
+[
+    {
+        "company": "ILCS",
+        "title": "Senior Fullstack Engineer, Dev Ops",
+        "link": "https://www.ilcs.co.id",
+        "period": "2020 — Present",
+        "description": "Build and maintain Pelindo's applications, across the whole product. Work closely with cross-functional teams, including developers, customers, and product managers for best practices in web accessibility. My role also includes DevOps responsibilities, ensuring smooth deployment and operation of applications.",
+        "technologies": [
+            "JavaScript",
+            "Codeigniter",
+            "React",
+            "Php",
+            "MySQL",
+            "Postgres",
+            "Oracle"
+        ]
+    },
+    {
+        "company": "Matahari",
+        "title": "Frontend Engineer",
+        "link": "https://matahari.com/",
+        "period": "2019 — 2020",
+        "description": "Build and maintain components used to construct Matahari’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
+        "technologies": ["JavaScript", "React", "NextJs", "Jira"]
+    },
+    {
+        "company": "Nawadata",
+        "title": "Fullstack Developer",
+        "link": "https://nawadata.com/",
+        "period": "2017 — 2019",
+        "description": "Build and maintain critical backend services such as ETLs and databases. Work closely with cross-functional teams, including developers, and product managers. The customers are banks that operate in Indonesia such as CIMB Niaga, Commonwealth, DBS, HSBC, PaninBank, etc.",
+        "technologies": [
+            ".Net",
+            "Ext JS",
+            "SQL Server",
+            "SQL Server Integration Services"
+        ]
+    },
+    {
+        "company": "Indocode Technology",
+        "title": "Fullstack Developer",
+        "link": "https://www.icode.co.id/",
+        "period": "2014 — 2017",
+        "description": "Build and maintain critical backend applications, Work closely with cross-functional teams, including developers, designers, and product managers.  My responsibilities include ensuring smooth deployment and operation of applications. The customers are cellular companies that operate in Indonesia such as 3, Telkomsel, XL, Smartfren, etc.",
+        "technologies": ["Php", "Javascript"]
+    }
+]

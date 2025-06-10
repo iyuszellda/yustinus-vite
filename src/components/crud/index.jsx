@@ -1,160 +1,195 @@
-import { useEffect, useState } from "react";
-import ProductApi from "../../lib/api/productApi";
+import { useEffect, useState, useRef, useCallback } from "react";
 import ModalForm from "./ModalForm";
-import ModalDelete from "./ModalDelete";
+import ProductApi from "../../lib/api/productApi";
 
-export default function CrudIndex() {
+const PAGE_LIMIT = 10;
+
+export default function ProductTable() {
     const [products, setProducts] = useState([]);
-    const [modalOpen, setModalOpen] = useState(false);
-    const [editProduct, setEditProduct] = useState(null);
-    const [confirmOpen, setConfirmOpen] = useState(false);
-    const [productToDelete, setProductToDelete] = useState(null);
+    const [page, setPage] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentProduct, setCurrentProduct] = useState({});
+    const [header, setHeader] = useState(1);
+    const observer = useRef();
 
-    const [formData, setFormData] = useState({
-        title: "",
-        price: "",
-        description: "",
-        categoryId: 1,
-        images: [""],
-    });
+    const lastProductRef = useCallback(
+        (node) => {
+            if (loading) return;
+            if (observer.current) observer.current.disconnect();
 
-    const fetchProducts = async () => {
-        try {
-            const res = await ProductApi.get("/products?limit=150&offset=0");
-            setProducts(res.data);
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        }
-    };
+            observer.current = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && hasMore) {
+                    setPage((prevPage) => prevPage + 1);
+                }
+            });
+
+            if (node) observer.current.observe(node);
+        },
+        [loading, hasMore],
+    );
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
+        const fetchProducts = async () => {
+            setLoading(true);
+            try {
+                const response = await ProductApi.get("/products", {
+                    params: {
+                        offset: page * PAGE_LIMIT,
+                        limit: PAGE_LIMIT,
+                    },
+                });
 
-    const handleCreateOrUpdate = async (productData) => {
-        if (editProduct) {
-            try {
-                // Update existing product
-                const { data } = await ProductApi.put(
-                    `/products/${editProduct.id}`,
-                    productData,
-                );
+                const newProducts = response.data;
+                setProducts((prev) => [...prev, ...newProducts]);
+                setHasMore(newProducts.length === PAGE_LIMIT);
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, [page]);
+
+    const handleAdd = () => {
+        setCurrentProduct([]);
+        setIsModalOpen(true);
+        setHeader(1);
+    };
+
+    const handleEdit = (product) => {
+        setCurrentProduct(product);
+        setIsModalOpen(true);
+        setHeader(2);
+    };
+
+    const handleSave = async (data) => {
+        try {
+            if (data.id) {
+                await ProductApi.put(`/products/${data.id}`, data);
                 setProducts((prev) =>
-                    prev.map((p) => (p.id === editProduct.id ? data : p)),
+                    prev.map((product) =>
+                        product.id === data.id
+                            ? { ...product, ...data }
+                            : product,
+                    ),
                 );
-                setEditProduct(null);
-            } catch (error) {
-                console.error("Error updating product:", error);
+            } else {
+                await ProductApi.post(`/products`, data);
+                setProducts((prev) => [{ ...data }, ...prev]);
             }
-        } else {
-            try {
-                const { data } = await ProductApi.post(
-                    "/products",
-                    productData,
-                );
-                setProducts((prev) => [data, ...prev]);
-            } catch (error) {
-                console.error("Error creating product:", error);
-            }
+
+            console.log("Product updated successfully");
+        } catch (error) {
+            console.error("Error updating product:", error);
         }
     };
 
-    const requestDelete = (id) => {
-        setProductToDelete(id);
-        setConfirmOpen(true);
-    };
+    const handleDelete = async (productId) => {
+        if (!window.confirm("Are you sure you want to delete this product?"))
+            return;
 
-    const handleDelete = async () => {
         try {
-            await ProductApi.delete(`/products/${productToDelete}`);
-            fetchProducts();
+            await ProductApi.delete(`/products/${productId}`);
+            setProducts((prev) =>
+                prev.filter((product) => product.id !== productId),
+            );
         } catch (error) {
-            console.error("Error deleting product:", error);
-        } finally {
-            setConfirmOpen(false);
-            setProductToDelete(null);
+            console.error("Delete failed:", error);
+            alert("Failed to delete product.");
         }
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6 dark:bg-gray-900">
-            <div className="flex justify-between mb-4">
-                <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-                    Products
+        <div className="w-full mx-auto">
+            <div className="overflow-x-auto">
+                <h1 className="hidden md:block lg:block text-2xl font-extrabold text-center text-gray-700 dark:text-white mb-12">
+                    Product List
                 </h1>
-                <button
-                    onClick={() => {
-                        setEditProduct(null);
-                        setModalOpen(true);
-                        setFormData([
-                            {
-                                title: "",
-                                price: "",
-                                description: "",
-                                categoryId: 1,
-                                images: [""],
-                            },
-                        ]);
-                    }}
-                    className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
-                >
-                    + Add Product
-                </button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {products.map((product) => (
-                    <div
-                        key={product.id}
-                        className="bg-white dark:bg-gray-800 rounded shadow p-4 relative"
+                <div className="flex justify-end px-4 py-4">
+                    <button
+                        className="text-xs cursor-pointer px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                        onClick={() => handleAdd()}
                     >
-                        <img
-                            src={product.images[0]}
-                            alt={product.title}
-                            className="w-full h-40 object-cover rounded"
-                        />
-                        <h2 className="text-lg font-semibold mt-2 text-gray-800 dark:text-white">
-                            {product.title}
-                        </h2>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
-                            {product.description}
-                        </p>
-                        <p className="font-bold mt-1 text-indigo-600">
-                            ${product.price}
-                        </p>
-
-                        <div className="flex justify-between mt-3">
-                            <button
-                                onClick={() => {
-                                    setEditProduct(product);
-                                    setModalOpen(true);
-                                }}
-                                className="px-3 py-1 text-sm bg-yellow-400 text-white rounded"
-                            >
-                                Edit
-                            </button>
-                            <button
-                                onClick={() => requestDelete(product.id)}
-                                className="px-3 py-1 text-sm bg-red-500 text-white rounded"
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                ))}
+                        Add Product
+                    </button>
+                </div>
+                <table className="text-sm min-w-full table-auto">
+                    <thead className="text-neutral-900 dark:text-neutral-200 bg-gray-100 dark:bg-neutral-900">
+                        <tr>
+                            <th className="px-4 py-2 text-left">Title</th>
+                            <th className="px-4 py-2 text-left">Price</th>
+                            <th className="px-4 py-2 text-left">Image</th>
+                            <th className="px-4 py-2 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-transparent">
+                        {products.map((product, index) => {
+                            const isLast = index === products.length - 1;
+                            return (
+                                <tr
+                                    key={index}
+                                    ref={isLast ? lastProductRef : null}
+                                    className="border-t text-neutral-900 dark:text-neutral-50 hover:bg-slate-300 dark:hover:bg-slate-800"
+                                >
+                                    <td className="px-4 py-2">
+                                        {product.title}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        ${product.price}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        <img
+                                            src={product.images[0]}
+                                            alt={product.title}
+                                            className="w-16 h-16 object-cover rounded"
+                                        />
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        <div className="md:grid lg:grid grid-cols-2 content-center gap-3">
+                                            <button
+                                                onClick={() =>
+                                                    handleEdit(product)
+                                                }
+                                                className="cursor-pointer bg-amber-400 text-white px-3 py-1 rounded hover:bg-amber-500"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                onClick={() =>
+                                                    handleDelete(product.id)
+                                                }
+                                                className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
+
+            {loading && (
+                <p className="mt-4 text-gray-500 text-center">Loading...</p>
+            )}
+            {!hasMore && (
+                <p className="mt-4 text-emerald-700 dark:text-emerald-200 text-center text-xs">
+                    No more products to load.
+                </p>
+            )}
 
             <ModalForm
-                isOpen={modalOpen}
-                setIsOpen={setModalOpen}
-                onClose={() => setModalOpen(false)}
-                onSubmit={handleCreateOrUpdate}
-                initialData={editProduct}
-            />
-            <ModalDelete
-                isOpen={confirmOpen}
-                onClose={() => setConfirmOpen(false)}
-                onSubmit={handleDelete}
+                header={header}
+                product={currentProduct}
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSave={handleSave}
             />
         </div>
     );
