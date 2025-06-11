@@ -1,8 +1,9 @@
-import Works from "../lib/json/works.json";
+import { Link } from "react-router-dom";
+import WorksApi from "../../lib/json/works.json";
 export default function ListWork() {
     return (
         <>
-            {Works.map((work, index) => (
+            {WorksApi.map((work, index) => (
                 <div
                     key={index}
                     className="hover:text-teal-800 dark:hover:text-teal-300 focus-visible:text-teal-300 group/link text-base leading-tight text-neutral-800 dark:text-neutral-200 rounded-2xl p-4 hover:bg-slate-300 dark:hover:bg-slate-800/50 transition-all duration-300 hover:shadow-lg group relative lg:hover:!opacity-100 lg:group-hover/list:opacity-50"
@@ -46,13 +47,12 @@ export default function ListWork() {
                                         </a>
                                     )}
                                     {!app.link && <span>{app.name}</span>}
-                                    <a
-                                        href={app.detail.images}
-                                        target="_blank"
+                                    <Link
+                                        to={`/work/gallery/${work.id}/${app.id}`}
                                         className="font-semibold text-sky-700 dark:text-sky-300 ml-2 items-center rounded-full bg-teal-500/10 px-3 py-1 text-xs leading-5"
                                     >
-                                        See Image
-                                    </a>
+                                        See Gallery
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
