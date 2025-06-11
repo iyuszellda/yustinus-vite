@@ -1,6 +1,5 @@
-import React from "react";
 import Case from "../components/Case";
-import ListWork from "../components/ListWork";
+import ListWork from "../components/work/ListWork";
 export default function Gallery() {
     return (
         <Case>

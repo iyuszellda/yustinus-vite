@@ -1,4 +1,3 @@
-import React from "react";
 import Case from "../components/Case";
 export default function About() {
     return (

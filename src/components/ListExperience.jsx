@@ -1,8 +1,8 @@
-import Experience from "../lib/json/experience.json";
+import ExperienceApi from "../lib/json/experience.json";
 export default function ListExperience() {
     return (
         <>
-            {Experience.map((experience, index) => (
+            {ExperienceApi.map((experience, index) => (
                 <div
                     key={index}
                     className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50"

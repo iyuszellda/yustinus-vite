@@ -8,11 +8,14 @@ import Demo from "./pages/demo/Demo";
 import ProductList from "./components/product/ProductList";
 import ProductDetail from "./components/product/ProductDetail";
 import CrudIndex from "./components/crud/index";
+import NotFound from "./pages/NotFound";
+import Gallery from "./components/work/Gallery";
 
 const routes = [
     {
         path: "/",
         element: <App />,
+        errorElement: <NotFound />,
         children: [
             { index: true, element: <Home /> },
             { path: "about", element: <About /> },
@@ -20,8 +23,9 @@ const routes = [
             { path: "experience", element: <Experience /> },
             { path: "demo", element: <Demo /> },
             { path: "demo/product", element: <ProductList /> },
-            { path: "demo/product/detail/:id", element: <ProductDetail /> },
             { path: "demo/crud", element: <CrudIndex /> },
+            { path: "demo/product/detail/:id", element: <ProductDetail /> },
+            { path: "work/gallery/:companyId/:appId", element: <Gallery /> },
         ],
     },
 ];
