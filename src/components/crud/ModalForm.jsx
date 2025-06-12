@@ -2,15 +2,23 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 import ProductApi from "../../lib/api/productApi";
 
-const ModalForm = ({ header, product, isOpen, onClose, onSave }) => {
-    const [selectedOption, setSelectedOption] = useState(null);
+const ModalForm = ({
+    header,
+    product,
+    categories,
+    isOpen,
+    onClose,
+    onSave,
+}) => {
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectImage, setSelectImage] = useState();
-    const [editedProduct, setEditedProduct] = useState({
+    const [productData, setProductData] = useState({
         title: "",
         price: "",
         description: "",
         images: "",
-        categoryId: 1,
+        categoryId: "",
     });
 
     useEffect(() => {
@@ -27,49 +35,56 @@ const ModalForm = ({ header, product, isOpen, onClose, onSave }) => {
     }, []);
 
     useEffect(() => {
+        setSelectedImage(product);
         if (product) {
-            setSelectedOption(product);
             if (header == 1) {
-                setEditedProduct({
+                setProductData({
                     title: product.title || "",
                     price: product.price || 0,
                     description: product.description || "",
-                    categoryId: (product.category && product.category.id) || 1,
+                    categoryId: (categories && categories.id) || 1,
                     images: product.images || "",
                 });
             } else {
-                setEditedProduct({
+                setProductData({
                     id: product.id,
-                    title: product.title || "",
-                    price: product.price || 0,
-                    description: product.description || "",
-                    categoryId: (product.category && product.category.id) || 1,
-                    images: product.images || "",
+                    title: product.title,
+                    price: product.price,
+                    description: product.description,
+                    images: product.images,
                 });
             }
         }
-    }, [product, header]);
+    }, [product, categories, header]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
-        setEditedProduct((prev) => ({
+        setProductData((prev) => ({
             ...prev,
             [name]: value,
         }));
     };
 
-    const handleSelectChange = (option) => {
-        setSelectedOption(option);
-        setEditedProduct((prev) => ({
+    const handleSelectImage = (option) => {
+        setSelectedImage(option);
+        setProductData((prev) => ({
             ...prev,
             images: option.images,
         }));
     };
 
+    const handleSelectCategory = (option) => {
+        setSelectedCategory(option);
+        setProductData((prev) => ({
+            ...prev,
+            categoryId: option.id,
+        }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSave(editedProduct);
+        onSave(productData);
         onClose();
     };
 
@@ -93,7 +108,7 @@ const ModalForm = ({ header, product, isOpen, onClose, onSave }) => {
                             id="title"
                             name="title"
                             type="text"
-                            value={editedProduct.title}
+                            value={productData.title}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
@@ -107,8 +122,8 @@ const ModalForm = ({ header, product, isOpen, onClose, onSave }) => {
                         </label>
                         <Select
                             options={selectImage}
-                            value={selectedOption}
-                            onChange={handleSelectChange}
+                            value={selectedImage}
+                            onChange={handleSelectImage}
                             formatOptionLabel={({ title, images }) => (
                                 <div className="flex items-center gap-2">
                                     <img
@@ -123,6 +138,34 @@ const ModalForm = ({ header, product, isOpen, onClose, onSave }) => {
                             classNamePrefix="react-select"
                         />
                     </div>
+                    {header == 1 && (
+                        <div className="mb-4">
+                            <label
+                                htmlFor="title"
+                                className="block text-sm font-medium text-gray-700"
+                            >
+                                Category
+                            </label>
+                            <Select
+                                options={categories}
+                                value={selectedCategory}
+                                onChange={handleSelectCategory}
+                                formatOptionLabel={({ name, image }) => (
+                                    <div className="flex items-center gap-2">
+                                        <img
+                                            src={image}
+                                            alt={name}
+                                            className="w-6 h-6 rounded-full"
+                                        />
+                                        <span>{name}</span>
+                                    </div>
+                                )}
+                                className="react-select-container"
+                                classNamePrefix="react-select"
+                            />
+                        </div>
+                    )}
+
                     <div className="mb-4">
                         <label
                             htmlFor="price"
@@ -134,7 +177,7 @@ const ModalForm = ({ header, product, isOpen, onClose, onSave }) => {
                             id="price"
                             name="price"
                             type="number"
-                            value={editedProduct.price}
+                            value={productData.price}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
@@ -149,7 +192,7 @@ const ModalForm = ({ header, product, isOpen, onClose, onSave }) => {
                         <textarea
                             id="description"
                             name="description"
-                            value={editedProduct.description}
+                            value={productData.description}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />

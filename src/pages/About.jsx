@@ -1,4 +1,4 @@
-import Case from "../components/Case";
+import Case from "@/components/Case";
 export default function About() {
     return (
         <Case>

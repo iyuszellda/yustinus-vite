@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import ModalForm from "./ModalForm";
-import ProductApi from "../../lib/api/productApi";
+import ProductApi from "@/lib/api/productApi";
 
 const PAGE_LIMIT = 10;
 
 export default function ProductTable() {
     const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -40,7 +41,6 @@ export default function ProductTable() {
                         limit: PAGE_LIMIT,
                     },
                 });
-
                 const newProducts = response.data;
                 setProducts((prev) => [...prev, ...newProducts]);
                 setHasMore(newProducts.length === PAGE_LIMIT);
@@ -52,6 +52,22 @@ export default function ProductTable() {
         };
 
         fetchProducts();
+    }, [page]);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            setLoading(true);
+            try {
+                const response = await ProductApi.get("/categories");
+                setCategories(response.data);
+            } catch (error) {
+                console.error("Failed to fetch categories:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCategories();
     }, [page]);
 
     const handleAdd = () => {
@@ -187,6 +203,7 @@ export default function ProductTable() {
             <ModalForm
                 header={header}
                 product={currentProduct}
+                categories={categories}
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onSave={handleSave}

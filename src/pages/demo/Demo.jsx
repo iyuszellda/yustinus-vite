@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Case from "../../components/Case";
+import Case from "@/components/Case";
 export default function Demo() {
     const demoData = [
         {

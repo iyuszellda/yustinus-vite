@@ -1,4 +1,4 @@
-import ExperienceApi from "../lib/json/experience.json";
+import ExperienceApi from "@/lib/json/experience.json";
 export default function ListExperience() {
     return (
         <>
