@@ -13,6 +13,11 @@ export default defineConfig({
             ext: ".br", // '.gz' for gzip
         }),
     ],
+    resolve: {
+        alias: {
+            "@": new URL("./src", import.meta.url).pathname,
+        },
+    },
     build: {
         target: "esnext",
         minify: "esbuild",

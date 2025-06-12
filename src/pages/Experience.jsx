@@ -1,5 +1,5 @@
-import Case from "../components/Case";
-import ListExperience from "../components/ListExperience";
+import Case from "@/components/Case";
+import ListExperience from "@/components/ListExperience";
 
 export default function Experience() {
     return (

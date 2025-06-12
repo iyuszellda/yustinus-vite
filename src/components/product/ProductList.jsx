@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import ProductCard from "./ProductCard";
-import ProductApi from "../../lib/api/productApi";
-import SkeletonCard from "../skeleton/SkeletonCard";
+import ProductApi from "@/lib/api/productApi";
+import SkeletonCard from "@/components/skeleton/SkeletonCard";
 
 const PRODUCTS_PER_PAGE = 8;
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import WorksApi from "../../lib/json/works.json";
+import WorksApi from "@/lib/json/works.json";
 export default function ListWork() {
     return (
         <>

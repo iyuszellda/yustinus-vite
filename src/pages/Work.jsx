@@ -1,5 +1,5 @@
-import Case from "../components/Case";
-import ListWork from "../components/work/ListWork";
+import Case from "@/components/Case";
+import ListWork from "@/components/work/ListWork";
 export default function Gallery() {
     return (
         <Case>

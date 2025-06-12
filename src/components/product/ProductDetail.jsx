@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ProductApi from "../../lib/api/productApi";
-import SkeletonCard from "../skeleton/SkeletonCard";
+import ProductApi from "@/lib/api/productApi";
+import SkeletonCard from "@/components/skeleton/SkeletonCard";
 
 export default function ProductDetail() {
     const { id } = useParams();
