@@ -12,9 +12,9 @@
                 "link": "https://dashboard.ipctpk.co.id",
                 "detail": {
                     "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
+                        "dashboardtpk1.JPG",
+                        "dashboardtpk2.JPG",
+                        "dashboardtpk3.JPG"
                     ]
                 }
             },
@@ -23,11 +23,7 @@
                 "name": "CPC TPK",
                 "link": "https://cpctpk.ilcs.co.id",
                 "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
+                    "images": ["cpc1.JPG", "cpc2.JPG", "cpc3.JPG"]
                 }
             },
             {
@@ -35,11 +31,7 @@
                 "name": "MDM",
                 "link": "https://mdm.pelindo.co.id/",
                 "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
+                    "images": ["mdm1.JPG", "mdm2.JPG", "mdm3.JPG"]
                 }
             },
             {
@@ -92,11 +84,7 @@
                 "name": "SIMON TKBM",
                 "link": "https://simtkbm.pelindo.co.id",
                 "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
+                    "images": ["simtkbm1.JPG", "simtkbm2.JPG", "simtkbm3.JPG"]
                 }
             },
             {
@@ -105,9 +93,10 @@
                 "link": "http://stid.priokport.co.id",
                 "detail": {
                     "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
+                        "stidpriok1.JPG",
+                        "stidpriok2.JPG",
+                        "stidpriok3.JPG",
+                        "stidpriok4.JPG"
                     ]
                 }
             },
@@ -117,9 +106,10 @@
                 "link": "https://stid.pelindo.co.id",
                 "detail": {
                     "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
+                        "stidnas1.JPG",
+                        "stidnas2.JPG",
+                        "stidnas3.JPG",
+                        "stidnas4.JPG"
                     ]
                 }
             },
@@ -129,9 +119,9 @@
                 "link": "https://absensi-eos.ilcs.co.id",
                 "detail": {
                     "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
+                        "absensieos1.JPG",
+                        "absensieos2.JPG",
+                        "absensieos3.JPG"
                     ]
                 }
             },
