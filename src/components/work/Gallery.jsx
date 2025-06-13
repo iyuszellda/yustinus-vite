@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SkeletonCard from "@/components/skeleton/SkeletonCard";
+import Skeleton from "@/components/skeleton/Skeleton";
 import WorksApi from "@/lib/json/works.json";
 
 export default function Gallery() {
@@ -25,13 +25,13 @@ export default function Gallery() {
             } catch (error) {
                 console.error("Error fetching product:", error);
             } finally {
-                setLoading(false);
+                setTimeout(() => setLoading(false), 300);
             }
         };
         fetchProduct();
     }, [companyId, appId]);
     if (loading) {
-        return <SkeletonCard isDetail={true} />;
+        return <Skeleton type={"card"} isDetail={true} />;
     }
 
     if (!gallery) {

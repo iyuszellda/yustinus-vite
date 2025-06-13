@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import ModalForm from "./ModalForm";
 import ProductApi from "@/lib/api/productApi";
+import Skeleton from "@/components/skeleton/Skeleton";
 
-const PAGE_LIMIT = 10;
+const PAGE_LIMIT = 5;
 
 export default function ProductTable() {
     const [products, setProducts] = useState([]);
@@ -191,9 +192,7 @@ export default function ProductTable() {
                 </table>
             </div>
 
-            {loading && (
-                <p className="mt-4 text-gray-500 text-center">Loading...</p>
-            )}
+            {loading && <Skeleton type="table" />}
             {!hasMore && (
                 <p className="mt-4 text-emerald-700 dark:text-emerald-200 text-center text-xs">
                     No more products to load.
