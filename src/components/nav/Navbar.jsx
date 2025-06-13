@@ -1,7 +1,7 @@
 import Case from "@/components/Case";
 import NavLink from "./NavLink";
-import logo from "/yustinus_logo.svg?url";
-import darkLogo from "/yustinus_logo.png?url";
+import logo from "../../assets/yustinus_logo.avif";
+import darkLogo from "../../assets/yustinus_logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -91,7 +91,7 @@ export default function Navbar({
                                 location.pathname === link.page && (
                                     <span
                                         key={link.page}
-                                        className="text-neutral-900 dark:text-white font-semibold"
+                                        className="text-gray-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
                                     </span>
@@ -103,7 +103,7 @@ export default function Navbar({
                                 (prodDetail === link.page && (
                                     <span
                                         key={link.page}
-                                        className="text-neutral-900 dark:text-white font-semibold"
+                                        className="text-gray-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
                                     </span>
@@ -111,7 +111,7 @@ export default function Navbar({
                                 (galleryDetail === link.page && (
                                     <span
                                         key={link.page}
-                                        className="text-neutral-900 dark:text-white font-semibold"
+                                        className="text-gray-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
                                     </span>
@@ -120,7 +120,7 @@ export default function Navbar({
                         })}
 
                         <button
-                            className="text-neutral-900 dark:text-white focus:outline-none"
+                            className="text-gray-900 dark:text-white focus:outline-none"
                             onClick={() => setIsOpen(!isOpen)}
                         >
                             {isOpen ? (
@@ -142,7 +142,7 @@ export default function Navbar({
                                         onLoading={onLoading}
                                         name={link.name}
                                         href={link.href}
-                                        className="block text-neutral-700 dark:text-neutral-300 transition"
+                                        className="block text-gray-700 dark:text-gray-300 transition"
                                     >
                                         {link.name}
                                     </NavLink>
