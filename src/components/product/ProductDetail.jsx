@@ -19,7 +19,17 @@ export default function ProductDetail() {
                 setProduct(response.data);
                 setMainImage(response.data.images[0]);
             } catch (error) {
-                console.error("Error fetching product:", error);
+                if (ProductApi.isAxiosError(error)) {
+                    if (error.code === "ECONNABORTED") {
+                        console.error(
+                            "⏰ Request timed out. Please try again.",
+                        );
+                    } else {
+                        console.error("❌ Axios error:", error.message);
+                    }
+                } else {
+                    console.error("⚠️ Unexpected error:", error);
+                }
             } finally {
                 setLoading(false);
             }
@@ -84,13 +94,13 @@ export default function ProductDetail() {
 
                 {/* Product Info */}
                 <div className="space-y-6">
-                    <h1 className="lg:text-3xl md:text-2xl font-bold text-gray-900 dark:text-white">
+                    <h1 className="lg:text-3xl md:text-2xl font-bold text-neutral-900 dark:text-white">
                         {product.title}
                     </h1>
                     <p className="text-md text-slate-800 dark:text-slate-300 font-semibold">
                         ${product.price}
                     </p>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <p className="text-sm text-neutral-700 dark:text-neutral-300">
                         {product.description}
                     </p>
                     <button className="text-xs px-5 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition">

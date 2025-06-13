@@ -21,7 +21,7 @@ export default function Gallery() {
                     (a) => a.id === Number(appId),
                 );
                 setGallery(application);
-                setMainImage(application.detail.images[0]);
+                setMainImage(application && application.detail.images[0]);
             } catch (error) {
                 console.error("Error fetching product:", error);
             } finally {

@@ -43,7 +43,17 @@ export default function ProductList() {
                 });
                 if (end >= response.data.length) setHasMore(false);
             } catch (error) {
-                console.error("Error fetching products:", error);
+                if (ProductApi.isAxiosError(error)) {
+                    if (error.code === "ECONNABORTED") {
+                        console.error(
+                            "⏰ Request timed out. Please try again.",
+                        );
+                    } else {
+                        console.error("❌ Axios error:", error.message);
+                    }
+                } else {
+                    console.error("⚠️ Unexpected error:", error);
+                }
             }
         };
 
@@ -52,7 +62,7 @@ export default function ProductList() {
 
     return (
         <div className="w-[100%] mx-auto">
-            <h2 className="hidden md:block lg:block text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">
+            <h2 className="hidden md:block lg:block text-2xl font-bold text-center mb-6 text-neutral-800 dark:text-white">
                 Product List
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-3">
@@ -78,12 +88,12 @@ export default function ProductList() {
 
                 {hasMore &&
                     Array.from({ length: PRODUCTS_PER_PAGE }).map((_, i) => (
-                        <Skeleton key={`skeleton-${page}-${i}`} type={"card"} />
+                        <Skeleton key={i} type={"card"} />
                     ))}
             </div>
 
             {!hasMore && (
-                <div className="text-center text-xs mt-6 text-gray-700 dark:text-gray-400">
+                <div className="text-center text-xs mt-6 text-neutral-700 dark:text-neutral-400">
                     You have reached the end of the product list.
                 </div>
             )}

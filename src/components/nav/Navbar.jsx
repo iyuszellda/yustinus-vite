@@ -4,7 +4,7 @@ import logo from "/yustinus_logo.svg?url";
 import darkLogo from "/yustinus_logo.png?url";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -37,7 +37,6 @@ export default function Navbar({
     loadingOnClick,
 }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [isDetail, setIsDetail] = useState("block");
     const location = useLocation();
     const prodDetail = location.pathname.split("/").slice(0, -1).join("/");
     const galleryDetail = location.pathname.split("/").slice(0, -2).join("/");
@@ -84,7 +83,7 @@ export default function Navbar({
                             <img
                                 src={theme == false ? logo : darkLogo}
                                 alt="yustinus logo"
-                                className={`${isDetail} w-7 h-7 rounded-full`}
+                                className={`flex w-7 h-7 rounded-full`}
                             />
                         </Link>
                         {currentPage.map((link) => {
@@ -92,7 +91,7 @@ export default function Navbar({
                                 location.pathname === link.page && (
                                     <span
                                         key={link.page}
-                                        className="text-gray-900 dark:text-white font-semibold"
+                                        className="text-neutral-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
                                     </span>
@@ -104,7 +103,7 @@ export default function Navbar({
                                 (prodDetail === link.page && (
                                     <span
                                         key={link.page}
-                                        className="text-gray-900 dark:text-white font-semibold"
+                                        className="text-neutral-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
                                     </span>
@@ -112,7 +111,7 @@ export default function Navbar({
                                 (galleryDetail === link.page && (
                                     <span
                                         key={link.page}
-                                        className="text-gray-900 dark:text-white font-semibold"
+                                        className="text-neutral-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
                                     </span>
@@ -121,7 +120,7 @@ export default function Navbar({
                         })}
 
                         <button
-                            className="text-gray-900 dark:text-white focus:outline-none"
+                            className="text-neutral-900 dark:text-white focus:outline-none"
                             onClick={() => setIsOpen(!isOpen)}
                         >
                             {isOpen ? (
@@ -143,7 +142,7 @@ export default function Navbar({
                                         onLoading={onLoading}
                                         name={link.name}
                                         href={link.href}
-                                        className="block text-gray-700 dark:text-gray-300 transition"
+                                        className="block text-neutral-700 dark:text-neutral-300 transition"
                                     >
                                         {link.name}
                                     </NavLink>

@@ -2,29 +2,84 @@ import Case from "@/components/Case";
 import SkeletonCard from "./SkeletonCard";
 
 export default function Skeleton({ type, isDetail }) {
+    if (type == "crud") {
+        return (
+            <div className="w-full">
+                <div className="overflow-x-auto">
+                    <h1 className="hidden md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
+                        Product List
+                    </h1>
+                    <div className="flex justify-end px-4 py-4">
+                        <div className="md:grid lg:grid grid-cols-2 content-center gap-3"></div>
+                    </div>
+                    <table className="text-sm min-w-full table-auto">
+                        <thead className="text-neutral-900 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-900">
+                            <tr>
+                                <th className="px-4 py-2 text-left">Title</th>
+                                <th className="px-4 py-2 text-left">Price</th>
+                                <th className="px-4 py-2 text-left">Image</th>
+                                <th className="px-4 py-2 text-center">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Array.from({ length: 10 }).map((_, index) => (
+                                <tr
+                                    key={index}
+                                    className="border-t animate-pulse text-neutral-900 dark:text-neutral-50"
+                                >
+                                    <td className="px-4 py-2">
+                                        <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded w-3/4"></div>
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded w-1/2"></div>
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        <div className="w-16 h-16 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        <div className="md:grid lg:grid grid-cols-2 content-center gap-3">
+                                            <div className="h-8 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                                            <div className="h-8 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        );
+    }
     if (type == "table") {
         return (
-            <tbody>
-                {[...Array(5)].map((_, index) => (
-                    <tr key={index} className="border-t animate-pulse">
-                        <td className="px-4 py-2">
-                            <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded w-3/4"></div>
-                        </td>
-                        <td className="px-4 py-2">
-                            <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded w-1/2"></div>
-                        </td>
-                        <td className="px-4 py-2">
-                            <div className="w-16 h-16 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
-                        </td>
-                        <td className="px-4 py-2">
-                            <div className="grid grid-cols-2 gap-3">
-                                <div className="h-8 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
-                                <div className="h-8 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
-                            </div>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
+            <table className="text-sm min-w-full table-auto">
+                <tbody>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                        <tr
+                            key={index}
+                            className="border-t animate-pulse text-neutral-900 dark:text-neutral-50"
+                        >
+                            <td className="px-4 py-2">
+                                <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded w-3/4"></div>
+                            </td>
+                            <td className="px-4 py-2">
+                                <div className="h-4 bg-neutral-300 dark:bg-neutral-700 rounded w-1/2"></div>
+                            </td>
+                            <td className="px-4 py-2">
+                                <div className="w-16 h-16 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                            </td>
+                            <td className="px-4 py-2">
+                                <div className="md:grid lg:grid grid-cols-2 content-center gap-3">
+                                    <div className="h-8 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                                    <div className="h-8 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         );
     }
     if (type == "card") {
@@ -38,7 +93,7 @@ export default function Skeleton({ type, isDetail }) {
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-3">
                     {[...Array(8)].map((_, i) => (
-                        <SkeletonCard />
+                        <SkeletonCard key={i} />
                     ))}
                 </div>
             </div>

@@ -46,7 +46,17 @@ export default function ProductTable() {
                 setProducts((prev) => [...prev, ...newProducts]);
                 setHasMore(newProducts.length === PAGE_LIMIT);
             } catch (error) {
-                console.error("Failed to fetch products:", error);
+                if (ProductApi.isAxiosError(error)) {
+                    if (error.code === "ECONNABORTED") {
+                        console.error(
+                            "⏰ Request timed out. Please try again.",
+                        );
+                    } else {
+                        console.error("❌ Axios error:", error.message);
+                    }
+                } else {
+                    console.error("⚠️ Unexpected error:", error);
+                }
             } finally {
                 setLoading(false);
             }
@@ -62,7 +72,17 @@ export default function ProductTable() {
                 const response = await ProductApi.get("/categories");
                 setCategories(response.data);
             } catch (error) {
-                console.error("Failed to fetch categories:", error);
+                if (ProductApi.isAxiosError(error)) {
+                    if (error.code === "ECONNABORTED") {
+                        console.error(
+                            "⏰ Request timed out. Please try again.",
+                        );
+                    } else {
+                        console.error("❌ Axios error:", error.message);
+                    }
+                } else {
+                    console.error("⚠️ Unexpected error:", error);
+                }
             } finally {
                 setLoading(false);
             }
@@ -123,7 +143,7 @@ export default function ProductTable() {
     return (
         <div className="w-full mx-auto">
             <div className="overflow-x-auto">
-                <h1 className="hidden md:block lg:block text-2xl font-extrabold text-center text-gray-700 dark:text-white mb-12">
+                <h1 className="hidden md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
                     Product List
                 </h1>
                 <div className="flex justify-end px-4 py-4">
@@ -135,7 +155,7 @@ export default function ProductTable() {
                     </button>
                 </div>
                 <table className="text-sm min-w-full table-auto">
-                    <thead className="text-neutral-900 dark:text-neutral-200 bg-gray-100 dark:bg-neutral-900">
+                    <thead className="text-neutral-900 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-900">
                         <tr>
                             <th className="px-4 py-2 text-left">Title</th>
                             <th className="px-4 py-2 text-left">Price</th>
