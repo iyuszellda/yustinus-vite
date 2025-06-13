@@ -40,44 +40,23 @@
                 "link": "https://p-connect.pelindo.co.id",
                 "detail": {
                     "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
+                        "pconnect1.JPG",
+                        "pconnect2.JPG",
+                        "pconnect3.JPG"
                     ]
                 }
             },
             {
                 "id": 5,
-                "name": "Cartos Patimban",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "Cartos Patimban"
             },
             {
                 "id": 6,
-                "name": "Dashboard Gate Pass",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "Dashboard Gate Pass"
             },
             {
                 "id": 7,
-                "name": "Operation Indonesia Port",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "Operation Indonesia Port"
             },
             {
                 "id": 8,
@@ -131,9 +110,10 @@
                 "link": "https://preventive-monitoring.ilcs.co.id",
                 "detail": {
                     "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
+                        "preventive1.JPG",
+                        "preventive2.JPG",
+                        "preventive3.JPG",
+                        "preventive4.JPG"
                     ]
                 }
             }
@@ -152,9 +132,9 @@
                 "link": "https://matahari.com",
                 "detail": {
                     "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
+                        "matahari1.JPG",
+                        "matahari2.JPG",
+                        "matahari3.JPG"
                     ]
                 }
             }
@@ -169,25 +149,11 @@
         "applications": [
             {
                 "id": 1,
-                "name": "BI Debts/Liabilities and Receivables CIMB Niaga",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "BI Debts/Liabilities and Receivables CIMB Niaga"
             },
             {
                 "id": 2,
-                "name": "Backend CRM Commonwealth",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "Backend CRM Commonwealth"
             }
         ]
     },
@@ -200,47 +166,19 @@
         "applications": [
             {
                 "id": 1,
-                "name": "BBT - Bintan",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "IMS Batam Bintan Telekomunikasi"
             },
             {
                 "id": 2,
-                "name": "Telin - Telkomsel",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "Telin - Telkomsel"
             },
             {
                 "id": 3,
-                "name": "Nokia SDP - Tri Indonesia",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "Nokia SDP - Tri Indonesia"
             },
             {
                 "id": 4,
-                "name": "CMP - Telkomsel",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "CMP - Telkomsel"
             }
         ]
     },
@@ -253,14 +191,7 @@
         "applications": [
             {
                 "id": 1,
-                "name": "Surat Online Bareskrim",
-                "detail": {
-                    "images": [
-                        "Lighthouse_yustinusmargiyuna_website.JPG",
-                        "publicImage2.JPG",
-                        "publicImage3.JPG"
-                    ]
-                }
+                "name": "Surat Online Bareskrim"
             }
         ]
     }

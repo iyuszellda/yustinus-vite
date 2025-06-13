@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductApi from "@/lib/api/productApi";
-import SkeletonCard from "@/components/skeleton/SkeletonCard";
+// import SkeletonCard from "@/components/skeleton/SkeletonCard";
+import Skeleton from "@/components/skeleton/Skeleton";
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -27,7 +28,7 @@ export default function ProductDetail() {
     }, [id]);
 
     if (loading) {
-        return <SkeletonCard isDetail={true} />;
+        return <Skeleton type={"card"} isDetail={true} />;
     }
 
     if (!product) {

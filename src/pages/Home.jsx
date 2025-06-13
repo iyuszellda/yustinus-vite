@@ -1,7 +1,5 @@
 import Case from "@/components/Case";
 export default function Home() {
-    // This is the Home component, which serves as the main landing page of the website.
-    // It provides an introduction to the website and the developer behind it.
     return (
         <Case>
             <div className="w-[90%] max-w-3xl mx-auto mt-10 flex flex-col gap-8">

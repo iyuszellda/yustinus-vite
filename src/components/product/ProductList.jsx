@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import ProductCard from "./ProductCard";
 import ProductApi from "@/lib/api/productApi";
-import SkeletonCard from "@/components/skeleton/SkeletonCard";
+import Skeleton from "@/components/skeleton/Skeleton";
 
 const PRODUCTS_PER_PAGE = 8;
 
@@ -9,12 +9,12 @@ export default function ProductList() {
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const observerRef = useRef();
 
     const lastProductRef = useCallback(
         (node) => {
-            if (loading || !hasMore) return;
+            if (!hasMore) return;
             if (observerRef.current) observerRef.current.disconnect();
             observerRef.current = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting) {
@@ -23,12 +23,11 @@ export default function ProductList() {
             });
             if (node) observerRef.current.observe(node);
         },
-        [loading, hasMore],
+        [hasMore],
     );
 
     useEffect(() => {
         const loadProducts = async () => {
-            setLoading(true);
             try {
                 const response = await ProductApi.get("/products");
                 const start = (page - 1) * PRODUCTS_PER_PAGE;
@@ -43,7 +42,6 @@ export default function ProductList() {
                     return [...prev, ...uniqueIds];
                 });
                 if (end >= response.data.length) setHasMore(false);
-                setLoading(false);
             } catch (error) {
                 console.error("Error fetching products:", error);
             }
@@ -78,9 +76,9 @@ export default function ProductList() {
                     }
                 })}
 
-                {loading &&
+                {hasMore &&
                     Array.from({ length: PRODUCTS_PER_PAGE }).map((_, i) => (
-                        <SkeletonCard key={`skeleton-${page}-${i}`} />
+                        <Skeleton key={`skeleton-${page}-${i}`} type={"card"} />
                     ))}
             </div>
 

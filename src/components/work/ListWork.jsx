@@ -46,13 +46,19 @@ export default function ListWork() {
                                             </svg>
                                         </a>
                                     )}
-                                    {!app.link && <span>{app.name}</span>}
-                                    <Link
-                                        to={`/work/gallery/${work.id}/${app.id}`}
-                                        className="font-semibold text-sky-700 dark:text-sky-300 ml-2 items-center rounded-full bg-teal-500/10 px-3 py-1 text-xs leading-5"
-                                    >
-                                        See Gallery
-                                    </Link>
+                                    {!app.link && (
+                                        <span className="cursor-help">
+                                            {app.name}
+                                        </span>
+                                    )}
+                                    {app.link && (
+                                        <Link
+                                            to={`/work/gallery/${work.id}/${app.id}`}
+                                            className="font-semibold text-sky-700 dark:text-sky-300 ml-2 items-center rounded-full bg-teal-500/10 px-3 py-1 text-xs leading-5"
+                                        >
+                                            See Gallery
+                                        </Link>
+                                    )}
                                 </li>
                             ))}
                         </ul>
