@@ -18,7 +18,7 @@ export default function ListExperience() {
                     <div className="z-10 sm:col-span-6">
                         <h3 className="font-medium leading-snug text-slate-200">
                             <a
-                                className="inline-flex items-baseline font-medium leading-tight text-gray-800 dark:text-neutral-300 hover:text-teal-700 dark:hover:text-teal-300 focus-visible:text-teal-300 group/link text-base"
+                                className="inline-flex items-baseline font-medium leading-tight text-neutral-800 dark:text-neutral-300 hover:text-teal-700 dark:hover:text-teal-300 focus-visible:text-teal-300 group/link text-base"
                                 href={experience.link}
                                 target="_blank"
                                 rel="noreferrer noopener"

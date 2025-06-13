@@ -6,10 +6,10 @@ export default function NotFound() {
         setTimeout(() => preloader.remove(), 10);
     }
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <h1 className="text-6xl font-bold text-gray-800">404</h1>
-            <p className="text-xl text-gray-600 mt-4">Page Not Found</p>
-            <p className="py-4 px-4 text-center text-lg text-gray-500 mt-2">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-neutral-100">
+            <h1 className="text-6xl font-bold text-neutral-800">404</h1>
+            <p className="text-xl text-neutral-600 mt-4">Page Not Found</p>
+            <p className="py-4 px-4 text-center text-lg text-neutral-500 mt-2">
                 The page you're looking for doesn't exist or has been moved.
             </p>
             <button

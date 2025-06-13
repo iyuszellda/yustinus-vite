@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
-import ProductApi from "../../lib/api/productApi";
+import ProductApi from "@/lib/api/productApi";
 
 const ModalForm = ({
     header,
@@ -27,7 +27,17 @@ const ModalForm = ({
                 const response = await ProductApi.get("/products");
                 setSelectImage(response.data);
             } catch (error) {
-                console.error("Failed to fetch products:", error);
+                if (ProductApi.isAxiosError(error)) {
+                    if (error.code === "ECONNABORTED") {
+                        console.error(
+                            "⏰ Request timed out. Please try again.",
+                        );
+                    } else {
+                        console.error("❌ Axios error:", error.message);
+                    }
+                } else {
+                    console.error("⚠️ Unexpected error:", error);
+                }
             }
         };
 
@@ -91,7 +101,7 @@ const ModalForm = ({
     if (!isOpen || !product) return null;
 
     return (
-        <div className="p-3 fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+        <div className="p-3 fixed inset-0 bg-neutral-500 bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
                 <h2 className="text-lg text-neutral-800 font-bold mb-4">
                     {header == 1 ? "Add Product" : "Edit Product"}
@@ -100,7 +110,7 @@ const ModalForm = ({
                     <div className="mb-4">
                         <label
                             htmlFor="title"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-medium text-neutral-700"
                         >
                             Title
                         </label>
@@ -110,13 +120,13 @@ const ModalForm = ({
                             type="text"
                             value={productData.title}
                             onChange={handleInputChange}
-                            className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
+                            className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
                     </div>
                     <div className="mb-4">
                         <label
                             htmlFor="title"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-medium text-neutral-700"
                         >
                             Images
                         </label>
@@ -142,7 +152,7 @@ const ModalForm = ({
                         <div className="mb-4">
                             <label
                                 htmlFor="title"
-                                className="block text-sm font-medium text-gray-700"
+                                className="block text-sm font-medium text-neutral-700"
                             >
                                 Category
                             </label>
@@ -169,7 +179,7 @@ const ModalForm = ({
                     <div className="mb-4">
                         <label
                             htmlFor="price"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-medium text-neutral-700"
                         >
                             Price
                         </label>
@@ -179,13 +189,13 @@ const ModalForm = ({
                             type="number"
                             value={productData.price}
                             onChange={handleInputChange}
-                            className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
+                            className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
                     </div>
                     <div className="mb-4">
                         <label
                             htmlFor="description"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-medium text-neutral-700"
                         >
                             Description
                         </label>
@@ -194,7 +204,7 @@ const ModalForm = ({
                             name="description"
                             value={productData.description}
                             onChange={handleInputChange}
-                            className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
+                            className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
                     </div>
                     <div className="flex justify-end gap-2">
