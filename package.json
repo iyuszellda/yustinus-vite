@@ -37,6 +37,7 @@
         "prettier-plugin-tailwindcss": "^0.6.11",
         "tailwindcss": "^4.1.6",
         "vite": "^6.3.5",
+        "vite-imagetools": "^7.1.0",
         "vite-plugin-compression": "^0.5.1"
     }
 }
