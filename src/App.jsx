@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 export default function App() {
-    const { pathname } = useLocation(); // e.g. "/demo/product"
-    const segments = pathname.split("/").filter(Boolean); // ["demo", "product"]
+    const { pathname } = useLocation();
+    const segments = pathname.split("/").filter(Boolean);
     const currentPage = segments[segments.length - 1] || "";
     const lastTheme = localStorage.getItem("theme") === null ? true : false;
     const [theme, setTheme] = useState(lastTheme);

@@ -83,18 +83,37 @@ export default function Skeleton({ type, isDetail }) {
         );
     }
     if (type == "card") {
+        return <SkeletonCard isDetail={isDetail} isProduct={true} />;
+    }
+    if (type == "gallery") {
         return <SkeletonCard isDetail={isDetail} />;
     }
     if (type == "product") {
         return (
-            <div className="w-full mx-auto">
-                <h2 className="hidden md:block lg:block text-2xl font-bold text-center mb-6">
-                    Product List
-                </h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-3">
-                    {[...Array(8)].map((_, i) => (
-                        <SkeletonCard key={i} />
-                    ))}
+            <div className="flex min-h-screen">
+                <div className="hidden md:block lg:block w-64 p-3 fixed h-full overflow-y-auto">
+                    <div className="p-4 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-lg animate-pulse">
+                        <div className="h-6 bg-neutral-300 dark:bg-neutral-600 rounded mb-4 w-1/2"></div>
+                        <div className="mb-6">
+                            <div className="h-5 bg-neutral-300 dark:bg-neutral-600 rounded w-1/3 mb-2"></div>
+                            <div className="h-10 bg-neutral-200 dark:bg-neutral-500 rounded"></div>
+                        </div>
+                        <div className="mb-6">
+                            <div className="h-5 bg-neutral-300 dark:bg-neutral-600 rounded w-1/2 mb-2"></div>
+                            <div className="flex gap-2">
+                                <div className="h-8 bg-neutral-200 dark:bg-neutral-500 rounded w-1/2"></div>
+                                <div className="h-8 bg-neutral-200 dark:bg-neutral-500 rounded w-1/2"></div>
+                            </div>
+                        </div>
+                        <div className="h-8 bg-neutral-300 dark:bg-neutral-500 rounded w-1/2"></div>
+                    </div>
+                </div>
+                <div className="w-[100%] mx-auto md:ml-64 lg:ml-64">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-3">
+                        {[...Array(8)].map((_, i) => (
+                            <SkeletonCard key={i} />
+                        ))}
+                    </div>
                 </div>
             </div>
         );

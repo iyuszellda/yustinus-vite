@@ -6,7 +6,11 @@ import Skeleton from "@/components/skeleton/Skeleton";
 const PAGE_LIMIT = 5;
 
 export default function ProductTable() {
+    const [filterText, setFilterText] = useState("");
     const [products, setProducts] = useState([]);
+    const filteredProducts = products.filter((product) =>
+        product.title.toLowerCase().includes(filterText.toLowerCase()),
+    );
     const [categories, setCategories] = useState([]);
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
@@ -14,6 +18,7 @@ export default function ProductTable() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentProduct, setCurrentProduct] = useState({});
     const [header, setHeader] = useState(1);
+    const fallbackSrc = "https://placehold.co/400x400?text=Image+Not+Found";
     const observer = useRef();
 
     const lastProductRef = useCallback(
@@ -146,7 +151,14 @@ export default function ProductTable() {
                 <h1 className="hidden md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
                     Product List
                 </h1>
-                <div className="flex justify-end px-4 py-4">
+                <div className="flex bg-white px-4 py-4 shadow-md justify-between items-center flex-col md:flex-row gap-2 mb-4 rounded-md">
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        value={filterText}
+                        onChange={(e) => setFilterText(e.target.value)}
+                        className="text-sm w-full md:w-1/2 p-2 border rounded shadow-sm focus:outline-none focus:ring focus:border-blue-300 mr-3"
+                    />
                     <button
                         className="text-xs cursor-pointer px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                         onClick={() => handleAdd()}
@@ -154,62 +166,75 @@ export default function ProductTable() {
                         Add Product
                     </button>
                 </div>
-                <table className="text-sm min-w-full table-auto">
-                    <thead className="text-neutral-900 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-900">
-                        <tr>
-                            <th className="px-4 py-2 text-left">Title</th>
-                            <th className="px-4 py-2 text-left">Price</th>
-                            <th className="px-4 py-2 text-left">Image</th>
-                            <th className="px-4 py-2 text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-transparent">
-                        {products.map((product, index) => {
-                            const isLast = index === products.length - 1;
-                            return (
-                                <tr
-                                    key={index}
-                                    ref={isLast ? lastProductRef : null}
-                                    className="border-t text-neutral-900 dark:text-neutral-50 hover:bg-slate-300 dark:hover:bg-slate-800"
-                                >
-                                    <td className="px-4 py-2">
-                                        {product.title}
-                                    </td>
-                                    <td className="px-4 py-2">
-                                        ${product.price}
-                                    </td>
-                                    <td className="px-4 py-2">
-                                        <img
-                                            src={product.images[0]}
-                                            alt={product.title}
-                                            className="w-16 h-16 object-cover rounded"
-                                        />
-                                    </td>
-                                    <td className="px-4 py-2">
-                                        <div className="md:grid lg:grid grid-cols-2 content-center gap-3">
-                                            <button
-                                                onClick={() =>
-                                                    handleEdit(product)
-                                                }
-                                                className="cursor-pointer bg-amber-400 text-white px-3 py-1 rounded hover:bg-amber-500"
-                                            >
-                                                Edit
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleDelete(product.id)
-                                                }
-                                                className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                                            >
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                <div className="overflow-x-auto rounded-md shadow-md">
+                    <table className="text-sm min-w-full bg-white">
+                        <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
+                            <tr>
+                                <th className="py-3 px-4 text-left border-b">
+                                    Title
+                                </th>
+                                <th className="py-3 px-4 text-left border-b">
+                                    Price
+                                </th>
+                                <th className="py-3 px-4 text-left border-b">
+                                    Image
+                                </th>
+                                <th className="py-3 px-4 text-center border-b">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-transparent">
+                            {filteredProducts.map((product, index) => {
+                                const isLast = index === products.length - 1;
+                                return (
+                                    <tr
+                                        key={index}
+                                        ref={isLast ? lastProductRef : null}
+                                        className="text-neutral-900 hover:bg-slate-300 transition"
+                                    >
+                                        <td className="py-3 px-4 border-b">
+                                            {product.title}
+                                        </td>
+                                        <td className="py-3 px-4 border-b">
+                                            ${product.price}
+                                        </td>
+                                        <td className="py-3 px-4 border-b">
+                                            <img
+                                                src={product.images[0]}
+                                                alt={product.title}
+                                                className="w-16 h-16 object-cover rounded"
+                                                onError={(e) => {
+                                                    e.target.src = fallbackSrc;
+                                                }}
+                                            />
+                                        </td>
+                                        <td className="py-3 px-4 border-b">
+                                            <div className="md:grid lg:grid grid-cols-2 content-center gap-3">
+                                                <button
+                                                    onClick={() =>
+                                                        handleEdit(product)
+                                                    }
+                                                    className="cursor-pointer bg-amber-400 text-white px-3 py-1 rounded hover:bg-amber-500"
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        handleDelete(product.id)
+                                                    }
+                                                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             {loading && <Skeleton type="table" />}

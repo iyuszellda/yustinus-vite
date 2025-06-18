@@ -31,7 +31,7 @@ export default function Gallery() {
         fetchProduct();
     }, [companyId, appId]);
     if (loading) {
-        return <Skeleton type={"card"} isDetail={true} />;
+        return <Skeleton type={"gallery"} isDetail={true} />;
     }
 
     if (!gallery) {
@@ -52,21 +52,20 @@ export default function Gallery() {
 
     return (
         <>
-            <div className="flex items-center px-4 py-4">
+            <div className="mt-5 mb-5 md:mt-0 lg:mt-0 grid grid-cols-3 md:grid-cols-9 gap-4">
                 <button
                     onClick={() => navigate(-1)}
-                    className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
+                    className="font-semibold cursor-pointer rounded-full text-neutral-800 dark:text-neutral-200 text-md"
                 >
                     ← Back
                 </button>
             </div>
-            <div className="w-full px-4 py-4 gap-5">
-                {/* Image Gallery */}
+            <div className="w-full px-4">
                 <div className="space-y-4">
                     <img
                         src={`/images/${mainImage}`}
                         alt={gallery.name}
-                        className="rounded-lg object-contain w-full h-90"
+                        className="rounded-lg object-cover w-full max-h-130"
                     />
                     <div className="flex gap-2 justify-center">
                         {gallery.detail.images.map((img, idx) => (

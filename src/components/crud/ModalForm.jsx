@@ -11,8 +11,9 @@ const ModalForm = ({
     onSave,
 }) => {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [optionImage, setOptionImage] = useState();
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [selectImage, setSelectImage] = useState();
+    const [optionCategory, setOptionCategory] = useState(null);
     const [productData, setProductData] = useState({
         title: "",
         price: "",
@@ -25,7 +26,20 @@ const ModalForm = ({
         const fetchProducts = async () => {
             try {
                 const response = await ProductApi.get("/products");
-                setSelectImage(response.data);
+                setOptionImage(
+                    response.data.map((c) => ({
+                        value: c.id,
+                        label: c.title,
+                        image: c.images,
+                    })),
+                );
+                setOptionCategory(
+                    categories.map((c) => ({
+                        value: c.id,
+                        label: c.name,
+                        image: c.image,
+                    })),
+                );
             } catch (error) {
                 if (ProductApi.isAxiosError(error)) {
                     if (error.code === "ECONNABORTED") {
@@ -42,34 +56,41 @@ const ModalForm = ({
         };
 
         fetchProducts();
-    }, []);
+    }, [categories]);
 
     useEffect(() => {
-        setSelectedImage(product);
         if (product) {
             if (header == 1) {
                 setProductData({
-                    title: product.title || "",
-                    price: product.price || 0,
-                    description: product.description || "",
-                    categoryId: (categories && categories.id) || 1,
-                    images: product.images || "",
+                    title: product.title,
+                    price: product.price,
+                    images: product.images,
+                    description: product.description,
+                    categoryId: product && product.categoryId,
                 });
+                // reset option on create product
+                setSelectedImage(null);
+                setSelectedCategory(null);
             } else {
                 setProductData({
                     id: product.id,
                     title: product.title,
                     price: product.price,
-                    description: product.description,
                     images: product.images,
+                    description: product.description,
+                });
+                // set selected image from updated images
+                setSelectedImage({
+                    value: product.id,
+                    label: product.title,
+                    image: product.images,
                 });
             }
         }
-    }, [product, categories, header]);
+    }, [product, header]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-
         setProductData((prev) => ({
             ...prev,
             [name]: value,
@@ -80,7 +101,7 @@ const ModalForm = ({
         setSelectedImage(option);
         setProductData((prev) => ({
             ...prev,
-            images: option.images,
+            images: option.image,
         }));
     };
 
@@ -88,7 +109,7 @@ const ModalForm = ({
         setSelectedCategory(option);
         setProductData((prev) => ({
             ...prev,
-            categoryId: option.id,
+            categoryId: option.value,
         }));
     };
 
@@ -118,7 +139,7 @@ const ModalForm = ({
                             id="title"
                             name="title"
                             type="text"
-                            value={productData.title}
+                            value={productData?.title || ""}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
@@ -131,17 +152,18 @@ const ModalForm = ({
                             Images
                         </label>
                         <Select
-                            options={selectImage}
+                            options={optionImage}
                             value={selectedImage}
+                            placeholder="Choose image"
                             onChange={handleSelectImage}
-                            formatOptionLabel={({ title, images }) => (
+                            formatOptionLabel={({ label, image }) => (
                                 <div className="flex items-center gap-2">
                                     <img
-                                        src={images}
-                                        alt={title}
+                                        src={image}
+                                        alt={label}
                                         className="w-6 h-6 rounded-full"
                                     />
-                                    <span>{title}</span>
+                                    <span>{label}</span>
                                 </div>
                             )}
                             className="react-select-container"
@@ -157,17 +179,18 @@ const ModalForm = ({
                                 Category
                             </label>
                             <Select
-                                options={categories}
+                                options={optionCategory}
                                 value={selectedCategory}
+                                placeholder="Choose category"
                                 onChange={handleSelectCategory}
-                                formatOptionLabel={({ name, image }) => (
+                                formatOptionLabel={({ label, image }) => (
                                     <div className="flex items-center gap-2">
                                         <img
                                             src={image}
-                                            alt={name}
+                                            alt={label}
                                             className="w-6 h-6 rounded-full"
                                         />
-                                        <span>{name}</span>
+                                        <span>{label}</span>
                                     </div>
                                 )}
                                 className="react-select-container"
@@ -187,7 +210,7 @@ const ModalForm = ({
                             id="price"
                             name="price"
                             type="number"
-                            value={productData.price}
+                            value={productData?.price || ""}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
@@ -202,7 +225,7 @@ const ModalForm = ({
                         <textarea
                             id="description"
                             name="description"
-                            value={productData.description}
+                            value={productData?.description || ""}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                         />
