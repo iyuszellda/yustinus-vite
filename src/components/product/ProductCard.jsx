@@ -1,24 +1,35 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
+    const [imgSrc, setImgSrc] = useState(product.images[0]);
+    const fallbackSrc = "https://placehold.co/200x200?text=Image+Not+Found";
     return (
         <div className="rounded-lg overflow-hidden bg-white dark:bg-neutral-700 shadow-lg group hover:shadow-xl transition duration-300 ease-in-out">
             <Link to={`/demo/product/detail/${product.id}`} className="block">
                 <div className="relative bg-transparent">
-                    <img
-                        className="w-full scale-90 aspect-square rounded-md object-contain group-hover:opacity-75 lg:aspect-auto lg:h-80"
-                        src={product.images[0]}
-                        alt={product.slug}
-                    />
+                    <div className="relative w-full max-w-md mx-auto">
+                        <img
+                            src={imgSrc}
+                            alt={product.slug}
+                            className="w-full h-auto scale-90 aspect-square rounded-md object-contain group-hover:opacity-75 lg:aspect-auto"
+                            onError={() => {
+                                if (imgSrc !== fallbackSrc) {
+                                    setImgSrc(fallbackSrc);
+                                }
+                            }}
+                            referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute top-0 left-0 lg:m-5 md:m-4 m-3">
+                            <small className="text-white text-xs font-semibold px-1 py-1">
+                                {product.category.name}
+                            </small>
+                        </div>
+                        <div className="absolute bottom-0 left-0 bg-sky-600 px-5 py-2 text-white text-sm">
+                            <span className="font-bold">$ {product.price}</span>
+                        </div>
+                    </div>
                     <div className="hover:bg-neutral-700 transition duration-300 absolute opacity-25"></div>
-                    <div className="absolute bottom-0 left-0 bg-sky-600 px-4 py-2 text-white text-sm transition duration-500 ease-in-out">
-                        <span className="font-bold">$ {product.price}</span>
-                    </div>
-                    <div className="flex text-xs md:text-sm lg:text-sm absolute md:top-12 md:left-6 lg:top-12 lg:left-6 bg-auto text-white flex-col items-center justify-center">
-                        <span className="font-bold">
-                            <small>{product.category.name}</small>
-                        </span>
-                    </div>
                 </div>
             </Link>
             <div className="px-6 py-3">

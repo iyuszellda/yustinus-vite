@@ -1,15 +1,15 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductApi from "@/lib/api/productApi";
-// import SkeletonCard from "@/components/skeleton/SkeletonCard";
 import Skeleton from "@/components/skeleton/Skeleton";
 
 export default function ProductDetail() {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
-    const [mainImage, setMainImage] = useState("");
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const [mainImage, setMainImage] = useState("");
+    const fallbackSrc = "https://placehold.co/400x400?text=Image+Not+Found";
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -59,36 +59,43 @@ export default function ProductDetail() {
 
     return (
         <>
-            <div className="flex items-center px-4 py-4">
+            <div className="mt-5 md:mb-4 lg:mb-4 md:mt-0 lg:mt-0 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 <button
                     onClick={() => navigate(-1)}
-                    className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
+                    className="font-semibold cursor-pointer rounded-full text-neutral-800 dark:text-neutral-200 text-md"
                 >
-                    ← Go Back
+                    ← Back
                 </button>
             </div>
-            <div className="max-w-6xl mx-auto px-4 py-4 grid md:grid-cols-2 gap-5">
+            <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-5">
                 {/* Image Gallery */}
                 <div className="space-y-4">
                     <img
                         src={mainImage}
                         alt={product.title}
                         className="rounded-lg object-contain w-full max-w-md mx-auto h-96"
+                        onError={() => {
+                            if (mainImage !== fallbackSrc) {
+                                setMainImage(fallbackSrc);
+                            }
+                        }}
+                        referrerPolicy="no-referrer"
                     />
                     <div className="flex gap-2 justify-center">
-                        {product.images.map((img, idx) => (
-                            <img
-                                key={idx}
-                                src={img}
-                                alt={`Thumbnail ${idx}`}
-                                onClick={() => setMainImage(img)}
-                                className={`w-16 h-16 rounded-md cursor-pointer border-2 ${
-                                    img === mainImage
-                                        ? "border-blue-600"
-                                        : "border-transparent"
-                                }`}
-                            />
-                        ))}
+                        {product.images &&
+                            product.images.map((img, idx) => (
+                                <img
+                                    key={idx}
+                                    src={img}
+                                    alt={`Thumbnail ${idx}`}
+                                    onClick={() => setMainImage(img)}
+                                    className={`w-16 h-16 rounded-md cursor-pointer border-2 ${
+                                        img === mainImage
+                                            ? "border-blue-600"
+                                            : "border-transparent"
+                                    }`}
+                                />
+                            ))}
                     </div>
                 </div>
 
