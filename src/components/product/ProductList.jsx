@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import ProductCard from "./ProductCard";
+import ProductFilter from "./ProductFilter";
 import ProductApi from "@/lib/api/productApi";
 import Skeleton from "@/components/skeleton/Skeleton";
-import Select from "react-select";
 
 const PRODUCTS_PER_PAGE = 8;
 
@@ -125,6 +125,7 @@ export default function ProductList() {
     }, []);
 
     function handleSelectCategory(option) {
+        setProducts([]);
         setSelectedCategory(option);
         setCategory(option.value);
         setPage(1);
@@ -140,72 +141,45 @@ export default function ProductList() {
         setIsResetting(true);
     }
 
+    function handleMinPrice(e) {
+        setPrice([e.target.value, price[1]]);
+    }
+
+    function handleMaxPrice(e) {
+        setProducts([]);
+        setPrice([price[0], e.target.value]);
+        setIsResetting(true);
+    }
+
     return (
-        <div className="flex min-h-screen">
-            <div className="hidden md:block lg:block w-64 p-3 fixed h-full overflow-y-auto">
-                <div className="p-4 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-lg">
-                    <h2 className="text-lg font-bold mb-4">Filters</h2>
-                    <div className="mb-6">
-                        <h3 className="font-medium mb-2">Category</h3>
-                        <Select
-                            options={optionCategory}
-                            value={selectedCategory}
-                            onChange={handleSelectCategory}
-                            placeholder="Choose category"
-                            formatOptionLabel={({ label, image }) => (
-                                <div className="flex items-center gap-2">
-                                    <img
-                                        src={image}
-                                        alt={label}
-                                        className="w-6 h-6 rounded-full"
-                                        onError={(e) => {
-                                            e.target.src = fallbackSrc;
-                                        }}
-                                    />
-                                    <span>{label}</span>
-                                </div>
-                            )}
-                            className="react-select-container bg-white dark:bg-neutral-700"
-                            classNamePrefix="react-select"
-                        />
-                    </div>
-                    <div className="mb-6">
-                        <label className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
-                            Price Range
-                        </label>
-                        <div className="flex gap-2 items-center">
-                            <input
-                                type="text"
-                                min={0}
-                                placeholder="Min"
-                                value={price && price[0]}
-                                onChange={(e) =>
-                                    setPrice([e.target.value, price[1]])
-                                }
-                                className="w-1/2 px-2 py-1 border rounded text-sm"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Max"
-                                value={price && price[1]}
-                                onChange={(e) =>
-                                    setPrice([price[0], e.target.value])
-                                }
-                                className="w-1/2 px-2 py-1 border rounded text-sm"
-                            />
-                        </div>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <button
-                            className="w-1/2 px-2 py-1 text-sm bg-amber-500 dark:bg-amber-300 text-white dark:text-neutral-800 rounded hover:bg-amber-400"
-                            onClick={handleClear}
-                            disabled={isResetting}
-                        >
-                            {isResetting ? "Resetting..." : "Clear"}
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div className="flex min-h-screen md:mt-0 mt-14">
+            <ProductFilter
+                optionCategory={optionCategory}
+                selectedCategory={selectedCategory}
+                price={price}
+                handleSelectCategory={handleSelectCategory}
+                setPrice={setPrice}
+                handleClear={handleClear}
+                isResetting={isResetting}
+                fallbackSrc={fallbackSrc}
+                isMobile={true}
+                handleMinPrice={handleMinPrice}
+                handleMaxPrice={handleMaxPrice}
+            />
+            <ProductFilter
+                optionCategory={optionCategory}
+                selectedCategory={selectedCategory}
+                price={price}
+                handleSelectCategory={handleSelectCategory}
+                setPrice={setPrice}
+                handleClear={handleClear}
+                isResetting={isResetting}
+                fallbackSrc={fallbackSrc}
+                isMobile={false}
+                handleMinPrice={handleMinPrice}
+                handleMaxPrice={handleMaxPrice}
+            />
+
             <div className="w-[100%] mx-auto md:ml-64 lg:ml-64">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-3">
                     {products.map((product, index) => {
@@ -228,7 +202,7 @@ export default function ProductList() {
                         }
                     })}
 
-                    {(isResetting || (hasMore && products.length === 0)) &&
+                    {(isResetting || hasMore) &&
                         Array.from({ length: PRODUCTS_PER_PAGE }).map(
                             (_, i) => <Skeleton key={i} type="card" />,
                         )}
