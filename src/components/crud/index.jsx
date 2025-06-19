@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import ModalForm from "./ModalForm";
 import ProductApi from "@/lib/api/productApi";
 import Skeleton from "@/components/skeleton/Skeleton";
+import CrudFilter from "./CrudFilter";
 
 const PAGE_LIMIT = 5;
 
@@ -12,7 +13,7 @@ export default function ProductTable() {
         product.title.toLowerCase().includes(filterText.toLowerCase()),
     );
     const [categories, setCategories] = useState([]);
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,6 +21,15 @@ export default function ProductTable() {
     const [header, setHeader] = useState(1);
     const fallbackSrc = "https://placehold.co/400x400?text=Image+Not+Found";
     const observer = useRef();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 767px)");
+        const handleChange = (e) => setIsMobile(e.matches);
+        setIsMobile(mediaQuery.matches);
+        mediaQuery.addEventListener("change", handleChange);
+        return () => mediaQuery.removeEventListener("change", handleChange);
+    }, []);
 
     const lastProductRef = useCallback(
         (node) => {
@@ -43,58 +53,37 @@ export default function ProductTable() {
             try {
                 const response = await ProductApi.get("/products", {
                     params: {
-                        offset: page * PAGE_LIMIT,
+                        offset: (page - 1) * PAGE_LIMIT,
                         limit: PAGE_LIMIT,
                     },
                 });
                 const newProducts = response.data;
-                setProducts((prev) => [...prev, ...newProducts]);
+                setProducts((prev) =>
+                    page === 1 ? newProducts : [...prev, ...newProducts],
+                );
                 setHasMore(newProducts.length === PAGE_LIMIT);
             } catch (error) {
-                if (ProductApi.isAxiosError(error)) {
-                    if (error.code === "ECONNABORTED") {
-                        console.error(
-                            "⏰ Request timed out. Please try again.",
-                        );
-                    } else {
-                        console.error("❌ Axios error:", error.message);
-                    }
-                } else {
-                    console.error("⚠️ Unexpected error:", error);
-                }
+                console.error("Error fetching products:", error);
             } finally {
                 setLoading(false);
             }
         };
 
         fetchProducts();
-    }, [page]);
+    }, [page]); // Only depends on page
 
     useEffect(() => {
         const fetchCategories = async () => {
-            setLoading(true);
             try {
                 const response = await ProductApi.get("/categories");
                 setCategories(response.data);
             } catch (error) {
-                if (ProductApi.isAxiosError(error)) {
-                    if (error.code === "ECONNABORTED") {
-                        console.error(
-                            "⏰ Request timed out. Please try again.",
-                        );
-                    } else {
-                        console.error("❌ Axios error:", error.message);
-                    }
-                } else {
-                    console.error("⚠️ Unexpected error:", error);
-                }
-            } finally {
-                setLoading(false);
+                console.error("Error fetching categories:", error);
             }
         };
 
         fetchCategories();
-    }, [page]);
+    }, []);
 
     const handleAdd = () => {
         setCurrentProduct([]);
@@ -151,22 +140,15 @@ export default function ProductTable() {
                 <h1 className="hidden md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
                     Product List
                 </h1>
-                <div className="flex bg-white px-4 py-4 shadow-md justify-between items-center flex-col md:flex-row gap-2 mb-4 rounded-md">
-                    <input
-                        type="text"
-                        placeholder="Search products..."
-                        value={filterText}
-                        onChange={(e) => setFilterText(e.target.value)}
-                        className="text-sm w-full md:w-1/2 p-2 border rounded shadow-sm focus:outline-none focus:ring focus:border-blue-300 mr-3"
-                    />
-                    <button
-                        className="text-xs cursor-pointer px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                        onClick={() => handleAdd()}
-                    >
-                        Add Product
-                    </button>
-                </div>
-                <div className="overflow-x-auto rounded-md shadow-md">
+                <CrudFilter
+                    filterText={filterText}
+                    setFilterText={setFilterText}
+                    handleAdd={handleAdd}
+                    isMobile={isMobile}
+                />
+                <div
+                    className={`overflow-x-auto rounded-md shadow-md ${isMobile ? "mt-30" : ""}`}
+                >
                     <table className="text-sm min-w-full bg-white">
                         <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
                             <tr>
