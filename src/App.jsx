@@ -1,6 +1,7 @@
 import Navbar from "./components/nav/Navbar";
 import Skeleton from "./components/skeleton/Skeleton";
 import Footer from "./components/Footer";
+import ScrollToTop from "./ScrollToTop";
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
@@ -37,6 +38,7 @@ export default function App() {
                     setPage={setPage}
                     loadingOnClick={loadingOnClick}
                 />
+                <ScrollToTop />
                 <main className="flex flex-col md:p-12 lg:p-12 pb-20 font-display min-h-screen dark:bg-neutral-800 bg-neutral-200">
                     {loading ? <Skeleton type={currentPage} /> : <Outlet />}
                 </main>

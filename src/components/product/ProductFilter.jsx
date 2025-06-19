@@ -133,7 +133,6 @@ export default function ProductFilterMobile({
                             </div>
                         </div>
                     </div>
-
                     <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-neutral-800 border-t border-neutral-300 dark:border-neutral-700 p-4 flex gap-2">
                         <button
                             className="flex-1 px-2 py-2 text-sm bg-gray-100 dark:bg-neutral-700 text-gray-800 dark:text-white rounded hover:bg-gray-200 dark:hover:bg-neutral-600"

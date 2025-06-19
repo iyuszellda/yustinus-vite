@@ -41,13 +41,18 @@ export default function ProductDetail() {
         return <Skeleton type={"card"} isDetail={true} />;
     }
 
+    const goBack = () => {
+        navigate(-1);
+        window.scrollTo(0, 0);
+    };
+
     if (!product) {
         return (
             <>
                 <div className="p-10 text-center text-neutral-500">
                     Product not found.
                     <button
-                        onClick={() => navigate(-1)}
+                        onClick={goBack}
                         className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
                     >
                         ← Go Back
@@ -61,7 +66,7 @@ export default function ProductDetail() {
         <>
             <div className="mt-5 md:mb-4 lg:mb-4 md:mt-0 lg:mt-0 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 <button
-                    onClick={() => navigate(-1)}
+                    onClick={goBack}
                     className="font-semibold cursor-pointer rounded-full text-neutral-800 dark:text-neutral-200 text-md"
                 >
                     ← Back
