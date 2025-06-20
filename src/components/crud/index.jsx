@@ -3,6 +3,7 @@ import ModalForm from "./ModalForm";
 import ProductApi from "@/lib/api/productApi";
 import Skeleton from "@/components/skeleton/Skeleton";
 import CrudFilter from "./CrudFilter";
+import { Edit, Trash2 } from "lucide-react";
 
 const PAGE_LIMIT = 5;
 
@@ -192,22 +193,28 @@ export default function ProductTable() {
                                             />
                                         </td>
                                         <td className="py-3 px-4 border-b">
-                                            <div className="md:grid lg:grid grid-cols-2 content-center gap-3">
+                                            <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-2 items-center gap-1">
                                                 <button
                                                     onClick={() =>
                                                         handleEdit(product)
                                                     }
-                                                    className="cursor-pointer bg-amber-400 text-white px-3 py-1 rounded hover:bg-amber-500"
+                                                    className="justify-center cursor-pointer bg-amber-400 text-white px-3 py-1 rounded hover:bg-amber-500 flex items-center text-sm gap-1"
                                                 >
-                                                    Edit
+                                                    <Edit className="w-4 h-4" />
+                                                    <span className="md:block hidden">
+                                                        Edit
+                                                    </span>
                                                 </button>
                                                 <button
                                                     onClick={() =>
                                                         handleDelete(product.id)
                                                     }
-                                                    className="cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                                    className="justify-center cursor-pointer bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 flex items-center text-sm gap-1"
                                                 >
-                                                    Delete
+                                                    <Trash2 className="w-4 h-4" />
+                                                    <span className="md:block hidden">
+                                                        Edit
+                                                    </span>
                                                 </button>
                                             </div>
                                         </td>

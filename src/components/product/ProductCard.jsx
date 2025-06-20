@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
                         <img
                             src={imgSrc}
                             alt={product.slug}
-                            className="md:max-h-60 max-h-40 w-full h-auto scale-90 aspect-square rounded-lg object-contain group-hover:opacity-75 lg:aspect-auto"
+                            className="md:max-h-60 lg:h-80 max-h-40 w-full h-auto scale-90 aspect-square rounded-lg object-contain group-hover:opacity-75 lg:aspect-auto"
                             onError={() => {
                                 if (imgSrc !== fallbackSrc) {
                                     setImgSrc(fallbackSrc);
@@ -20,10 +20,8 @@ export default function ProductCard({ product }) {
                             }}
                             referrerPolicy="no-referrer"
                         />
-                        <div className="absolute top-0 right-0 px-4 py-4">
-                            <small className="text-white text-xs font-medium px-1 py-1">
-                                {product.category.name}
-                            </small>
+                        <div className="absolute top-2 left-2 text-white text-xs font-semibold px-3 py-1 rounded">
+                            {product.category.name}
                         </div>
                         <div className="absolute bottom-0 left-0 bg-sky-600 px-5 py-2 text-white text-sm">
                             <span className="font-bold">$ {product.price}</span>
