@@ -26,7 +26,7 @@ export default function Demo() {
     return (
         <Case>
             <div className="w-[100%] max-w-1xl mx-auto mt-10 flex flex-col gap-8 p-4">
-                <div className="group relative pb-1 transition-all sm:gap-8 md:gap-4">
+                <div className="group relative pb-1 transition-transform sm:gap-8 md:gap-4">
                     <h3 className="hidden md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
                         Demo Projects
                     </h3>

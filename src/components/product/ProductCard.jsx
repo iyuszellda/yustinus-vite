@@ -15,7 +15,7 @@ export default function ProductCard({ product }) {
                         onError={(e) => {
                             e.target.src = fallbackSrc;
                         }}
-                        className="w-full h-full object-cover group-hover:opacity-75"
+                        className="w-full aspect-[3/3] object-cover group-hover:opacity-75"
                     />
                     <div className="absolute bottom-2 left-2 bg-sky-600/90 text-white text-sm font-bold px-3 py-1 rounded">
                         ${product.price}

@@ -170,7 +170,7 @@ export default function Skeleton({ type, isDetail }) {
             <div className="w-[90%] max-w-3xl mx-auto mt-10 flex flex-col gap-8 animate-pulse">
                 <h4 className="hidden md:block lg:block font-semibold bg-neutral-300 dark:bg-neutral-500 rounded-lg w-1/2 h-6"></h4>
 
-                <div className="rounded-2xl p-4 bg-neutral-200 dark:bg-neutral-700 transition-all duration-300 shadow-lg">
+                <div className="rounded-2xl p-4 bg-neutral-200 dark:bg-neutral-700 transition-transform duration-300 shadow-lg">
                     <div className="h-5 bg-neutral-300 dark:bg-neutral-600 rounded w-1/3 mb-2"></div>
                     <div className="h-4 bg-neutral-200 dark:bg-neutral-500 rounded w-2/3 mb-4"></div>
                     <div className="space-y-2">
@@ -186,7 +186,7 @@ export default function Skeleton({ type, isDetail }) {
                         <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[65%]"></li>
                     </ul>
                 </div>
-                <div className="rounded-2xl p-4 bg-neutral-200 dark:bg-neutral-700 transition-all duration-300 shadow-lg">
+                <div className="rounded-2xl p-4 bg-neutral-200 dark:bg-neutral-700 transition-transform duration-300 shadow-lg">
                     <div className="h-5 bg-neutral-300 dark:bg-neutral-600 rounded w-1/3 mb-2"></div>
                     <div className="h-4 bg-neutral-200 dark:bg-neutral-500 rounded w-2/3 mb-4"></div>
                     <div className="space-y-2">
@@ -207,7 +207,7 @@ export default function Skeleton({ type, isDetail }) {
         return (
             <Case>
                 <div className="w-full max-w-2xl mx-auto mt-10 flex flex-col gap-8 p-4">
-                    <div className="group relative pb-1 transition-all sm:gap-8 md:gap-4">
+                    <div className="group relative pb-1 transition-transform sm:gap-8 md:gap-4">
                         <div className="hidden md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
                             Demo Projects
                         </div>
@@ -244,7 +244,7 @@ export default function Skeleton({ type, isDetail }) {
                 {[...Array(4)].map((_, idx) => (
                     <div
                         key={idx}
-                        className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 animate-pulse"
+                        className="group relative grid pb-1 transition-transform sm:grid-cols-8 sm:gap-8 md:gap-4 animate-pulse"
                     >
                         <header className="z-10 mb-2 mt-1 font-semibold uppercase tracking-wide sm:col-span-2">
                             <div className="h-4 w-1/2 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
