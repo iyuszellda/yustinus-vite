@@ -181,7 +181,7 @@ export default function ProductList() {
             />
 
             <div className="w-[100%] mx-auto md:ml-64 lg:ml-64">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-3">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 p-3">
                     {products.map((product, index) => {
                         if (index === products.length - 1 && !isResetting) {
                             return (
