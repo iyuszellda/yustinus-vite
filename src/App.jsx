@@ -30,7 +30,7 @@ export default function App() {
 
     return (
         <div className={`${theme ? "dark" : ""}`}>
-            <div className="items-center justify-center min-h-screen duration-900 ease-in-out transition-all">
+            <div className="items-center justify-center min-h-screen duration-900 ease-in-out transition-transform">
                 <Navbar
                     theme={theme}
                     page={page}

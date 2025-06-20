@@ -70,7 +70,7 @@ export default function Gallery() {
                     <img
                         src={`/images/${mainImage}`}
                         alt={gallery.name}
-                        className="rounded-lg object-cover w-full max-h-130"
+                        className="rounded-lg object-cover w-full aspect-[3/5]"
                     />
                     <div className="flex gap-2 justify-center">
                         {gallery.detail.images.map((img, idx) => (
@@ -79,7 +79,7 @@ export default function Gallery() {
                                 src={`/images/${img}`}
                                 alt={`Thumbnail ${idx}`}
                                 onClick={() => setMainImage(img)}
-                                className={`w-20 rounded-md cursor-pointer border-2 ${
+                                className={`w-20 h-auto rounded-md cursor-pointer border-2 ${
                                     img === mainImage
                                         ? "border-blue-600"
                                         : "border-transparent"

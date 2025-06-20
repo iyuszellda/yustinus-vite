@@ -78,7 +78,7 @@ export default function ProductDetail() {
                     <img
                         src={mainImage}
                         alt={product.title}
-                        className="rounded-lg object-contain w-full max-w-md mx-auto h-96"
+                        className="rounded-lg object-contain w-full aspect-[3/3] max-w-md mx-auto h-96"
                         onError={() => {
                             if (mainImage !== fallbackSrc) {
                                 setMainImage(fallbackSrc);

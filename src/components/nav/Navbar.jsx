@@ -280,7 +280,7 @@ export default function Navbar({
                                 aria-label="light"
                                 onClick={() => toggleTheme()}
                                 whileHover={{ scale: 1.1 }}
-                                className={`flex ${theme && "lg:hidden sm:hidden transition-all duration-900 ease-in-out"} cursor-pointer rounded-full right-2 absolute bg-transparent p-3 font-medium uppercase leading-normal text-surface transform dark:hover:bg-neutral-700 hover:bg-neutral-300 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900`}
+                                className={`flex ${theme && "lg:hidden sm:hidden transition-transform duration-900 ease-in-out"} cursor-pointer rounded-full right-2 absolute bg-transparent p-3 font-medium uppercase leading-normal text-surface transform dark:hover:bg-neutral-700 hover:bg-neutral-300 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900`}
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -298,7 +298,7 @@ export default function Navbar({
                                 aria-label="dark"
                                 onClick={() => toggleTheme()}
                                 whileHover={{ scale: 1.1 }}
-                                className={`hidden ${theme && "lg:block sm:block transition-all duration-900 ease-in-out"} cursor-pointer rounded-full right-2 absolute bg-transparent p-3 font-medium uppercase leading-normal text-surface transform dark:hover:bg-neutral-700 hover:bg-neutral-300 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900`}
+                                className={`hidden ${theme && "lg:block sm:block transition-transform duration-900 ease-in-out"} cursor-pointer rounded-full right-2 absolute bg-transparent p-3 font-medium uppercase leading-normal text-surface transform dark:hover:bg-neutral-700 hover:bg-neutral-300 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900`}
                             >
                                 <svg
                                     fill="currentColor"

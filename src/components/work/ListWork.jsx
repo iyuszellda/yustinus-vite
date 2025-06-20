@@ -6,7 +6,7 @@ export default function ListWork() {
             {WorksApi.map((work, index) => (
                 <div
                     key={index}
-                    className="hover:text-teal-800 dark:hover:text-teal-300 focus-visible:text-teal-300 group/link text-base leading-tight text-neutral-800 dark:text-neutral-200 rounded-2xl p-4 hover:bg-slate-300 dark:hover:bg-slate-800/50 transition-all duration-300 hover:shadow-lg group relative lg:hover:!opacity-100 lg:group-hover/list:opacity-50"
+                    className="hover:text-teal-800 dark:hover:text-teal-300 focus-visible:text-teal-300 group/link text-base leading-tight text-neutral-800 dark:text-neutral-200 rounded-2xl p-4 hover:bg-slate-300 dark:hover:bg-slate-800/50 transition-transform duration-300 hover:shadow-lg group relative lg:hover:!opacity-100 lg:group-hover/list:opacity-50"
                 >
                     <h3 className="font-semibold">{work.company}</h3>
                     <p className="text-sm text-neutral-500 dark:text-neutral-400">
