@@ -1,48 +1,35 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
-    const [imgSrc, setImgSrc] = useState(product.images[0]);
     const fallbackSrc = "https://placehold.co/200x200?text=Image+Not+Found";
     return (
-        <div className="rounded-lg overflow-hidden bg-white dark:bg-neutral-700 shadow-lg group hover:shadow-xl transition duration-300 ease-in-out">
+        <div className="bg-white rounded-lg overflow-hidden shadow hover:shadow-md transition relative">
             <Link to={`/demo/product/detail/${product.id}`} className="block">
-                <div className="relative bg-transparent">
-                    <div className="relative w-full max-w-md mx-auto">
-                        <img
-                            src={imgSrc}
-                            alt={product.slug}
-                            className="md:max-h-60 lg:h-80 max-h-40 w-full h-auto scale-90 aspect-square rounded-lg object-contain group-hover:opacity-75 lg:aspect-auto"
-                            onError={() => {
-                                if (imgSrc !== fallbackSrc) {
-                                    setImgSrc(fallbackSrc);
-                                }
-                            }}
-                            referrerPolicy="no-referrer"
-                        />
-                        <div className="absolute top-2 left-2 text-white text-xs font-semibold px-3 py-1 rounded">
-                            {product.category.name}
-                        </div>
-                        <div className="absolute bottom-0 left-0 bg-sky-600 px-5 py-2 text-white text-sm">
-                            <span className="font-bold">$ {product.price}</span>
-                        </div>
+                <div className="relative w-full aspect-square bg-white">
+                    <div className="absolute top-0 right-0 text-white text-xs font-semibold px-3 py-1 rounded z-10">
+                        {product.category?.name}
                     </div>
-                    <div className="hover:bg-neutral-700 transition duration-300 absolute opacity-25"></div>
+                    <img
+                        src={product.images[0]}
+                        alt={product.title}
+                        onError={(e) => {
+                            e.target.src = fallbackSrc;
+                        }}
+                        className="w-full h-full object-contain"
+                    />
+                    <div className="absolute bottom-2 left-2 bg-sky-600/90 text-white text-sm font-bold px-3 py-1 rounded">
+                        ${product.price}
+                    </div>
+                </div>
+                <div className="px-4 py-3">
+                    <h3 className="text-sm font-semibold text-neutral-900 truncate">
+                        {product.title}
+                    </h3>
+                    <p className="text-xs text-neutral-500 truncate">
+                        {product.description}
+                    </p>
                 </div>
             </Link>
-            <div className="px-6 py-3">
-                <Link
-                    to={`/demo/product/detail/${product.id}`}
-                    className="font-semibold text-sm md:text-md lg:text-md text-neutral-950 dark:text-neutral-100 inline-block hover:text-neutral-600 transition duration-500 ease-in-out"
-                >
-                    {product.title.substring(0, 25)}
-                    {product.title.length > 25 ? "..." : ""}
-                </Link>
-                <p className="text-neutral-500 dark:text-neutral-400 text-xs md:text-md lg:text-md mt-2">
-                    {product.description.substring(0, 50)}
-                    {product.description.length > 50 ? "..." : ""}
-                </p>
-            </div>
         </div>
     );
 }
