@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function ProductCard({ product }) {
     const fallbackSrc = "https://placehold.co/200x200?text=Image+Not+Found";
     return (
-        <div className="bg-white rounded-lg overflow-hidden shadow hover:shadow-md transition relative">
+        <div className="bg-white rounded-lg overflow-hidden shadow group hover:shadow-xl transition duration-300 ease-in-out relative">
             <Link to={`/demo/product/detail/${product.id}`} className="block">
                 <div className="relative w-full aspect-square bg-white">
                     <div className="absolute top-0 right-0 text-white text-xs font-semibold px-3 py-1 rounded z-10">
@@ -15,7 +15,7 @@ export default function ProductCard({ product }) {
                         onError={(e) => {
                             e.target.src = fallbackSrc;
                         }}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain group-hover:opacity-75"
                     />
                     <div className="absolute bottom-2 left-2 bg-sky-600/90 text-white text-sm font-bold px-3 py-1 rounded">
                         ${product.price}
