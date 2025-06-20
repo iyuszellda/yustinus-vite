@@ -203,9 +203,9 @@ export default function ProductList() {
                     })}
 
                     {(isResetting || hasMore) &&
-                        Array.from({ length: PRODUCTS_PER_PAGE }).map(
-                            (_, i) => <Skeleton key={i} type="card" />,
-                        )}
+                        Array.from({ length: 10 }).map((_, i) => (
+                            <Skeleton key={i} type="card" />
+                        ))}
                 </div>
 
                 {!hasMore && products.length > 0 && (

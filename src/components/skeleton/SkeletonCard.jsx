@@ -37,17 +37,18 @@ export default function SkeletonCard({ isDetail, isProduct }) {
             </div>
         )
     ) : (
-        <div className="rounded overflow-hidden bg-white dark:bg-neutral-700 shadow-lg group hover:shadow-xl transition duration-300 ease-in-out animate-pulse">
-            <div className="block">
-                <div className="relative bg-transparent">
-                    <div className="w-full scale-90 aspect-square rounded-md bg-neutral-300 dark:bg-neutral-600 lg:aspect-auto lg:h-70" />
-                    <div className="absolute bottom-0 top-0 right-0 left-0 opacity-25 bg-neutral-700" />
-                </div>
+        <div class="bg-white dark:bg-neutral-700 rounded-lg overflow-hidden shadow-lg animate-pulse">
+            <div class="relative w-full aspect-square bg-neutral-300 dark:bg-neutral-600">
+                <div class="absolute top-2 right-2 w-16 h-5 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
+                <div class="absolute bottom-2 left-2 w-12 h-6 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
             </div>
-            <div className="px-6 py-3">
-                <div className="h-4 w-3/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-2" />
-                <div className="h-3 w-full bg-neutral-300 dark:bg-neutral-600 rounded mt-2" />
-                <div className="h-3 w-5/6 bg-neutral-300 dark:bg-neutral-600 rounded mt-1" />
+            <div class="px-4 py-3">
+                <div class="h-5 w-3/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-2"></div>
+                <div class="space-y-1">
+                    <div class="h-3 w-full bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                    <div class="h-3 w-5/6 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                    <div class="h-3 w-2/3 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                </div>
             </div>
         </div>
     );

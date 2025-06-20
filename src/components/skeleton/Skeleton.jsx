@@ -90,28 +90,53 @@ export default function Skeleton({ type, isDetail }) {
     }
     if (type == "product") {
         return (
-            <div className="flex min-h-screen">
-                <div className="hidden md:block lg:block w-64 p-3 fixed h-full overflow-y-auto">
-                    <div className="p-4 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-lg animate-pulse">
-                        <div className="h-6 bg-neutral-300 dark:bg-neutral-600 rounded mb-4 w-1/2"></div>
-                        <div className="mb-6">
-                            <div className="h-5 bg-neutral-300 dark:bg-neutral-600 rounded w-1/3 mb-2"></div>
-                            <div className="h-10 bg-neutral-200 dark:bg-neutral-500 rounded"></div>
-                        </div>
-                        <div className="mb-6">
-                            <div className="h-5 bg-neutral-300 dark:bg-neutral-600 rounded w-1/2 mb-2"></div>
-                            <div className="flex gap-2">
-                                <div className="h-8 bg-neutral-200 dark:bg-neutral-500 rounded w-1/2"></div>
-                                <div className="h-8 bg-neutral-200 dark:bg-neutral-500 rounded w-1/2"></div>
-                            </div>
-                        </div>
-                        <div className="h-8 bg-neutral-300 dark:bg-neutral-500 rounded w-1/2"></div>
+            <div class="flex min-h-screen md:mt-0 mt-14">
+                <div class="fixed mt-2 top-9 left-0 right-0 w-full bg-white dark:bg-neutral-900 border-t z-40 flex justify-around items-center py-2 md:hidden">
+                    <div class="relative w-full mx-3">
+                        <div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 bg-neutral-300 dark:bg-neutral-600 rounded-full"></div>
+                        <div class="w-full h-9 bg-neutral-200 dark:bg-neutral-700 rounded-md animate-pulse"></div>
                     </div>
                 </div>
-                <div className="w-[100%] mx-auto md:ml-64 lg:ml-64">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-3">
-                        {[...Array(8)].map((_, i) => (
-                            <SkeletonCard key={i} />
+                <div class="hidden md:block lg:block w-64 p-3 fixed h-full overflow-y-auto">
+                    <div class="p-4 bg-white dark:bg-neutral-700 rounded-lg animate-pulse">
+                        <div class="h-6 w-1/3 bg-neutral-300 dark:bg-neutral-600 rounded mb-4"></div>
+
+                        <div class="mb-6">
+                            <div class="h-5 w-1/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-3"></div>
+                            <div class="h-10 w-full bg-neutral-200 dark:bg-neutral-600 rounded-md"></div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="h-5 w-1/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-3"></div>
+                            <div class="flex gap-2">
+                                <div class="w-1/2 h-8 bg-neutral-200 dark:bg-neutral-600 rounded"></div>
+                                <div class="w-1/2 h-8 bg-neutral-200 dark:bg-neutral-600 rounded"></div>
+                            </div>
+                        </div>
+
+                        <div class="h-8 w-full bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                    </div>
+                </div>
+                <div class="w-[100%] mx-auto md:ml-64 lg:ml-64">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 p-3">
+                        {[...Array(10)].map((_, i) => (
+                            <div
+                                key={i}
+                                class="bg-white dark:bg-neutral-700 rounded-lg overflow-hidden shadow-lg animate-pulse"
+                            >
+                                <div class="relative w-full aspect-square bg-neutral-300 dark:bg-neutral-600">
+                                    <div class="absolute top-2 right-2 w-16 h-5 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
+                                    <div class="absolute bottom-2 left-2 w-12 h-6 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
+                                </div>
+                                <div class="px-4 py-3">
+                                    <div class="h-5 w-3/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-2"></div>
+                                    <div class="space-y-1">
+                                        <div class="h-3 w-full bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                                        <div class="h-3 w-5/6 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                                        <div class="h-3 w-2/3 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>
