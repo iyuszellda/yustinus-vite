@@ -70,7 +70,7 @@ export default function Gallery() {
                     <img
                         src={`/images/${mainImage}`}
                         alt={gallery.name}
-                        className="rounded-lg object-cover w-full aspect-[3/5]"
+                        className="rounded-lg object-cover w-[100%] h-auto"
                     />
                     <div className="flex gap-2 justify-center">
                         {gallery.detail.images.map((img, idx) => (
