@@ -105,7 +105,6 @@ export default function Skeleton({ type, isDetail }) {
                             <div class="h-5 w-1/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-3"></div>
                             <div class="h-10 w-full bg-neutral-200 dark:bg-neutral-600 rounded-md"></div>
                         </div>
-
                         <div class="mb-6">
                             <div class="h-5 w-1/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-3"></div>
                             <div class="flex gap-2">
@@ -122,7 +121,7 @@ export default function Skeleton({ type, isDetail }) {
                         {[...Array(10)].map((_, i) => (
                             <div
                                 key={i}
-                                class="bg-white dark:bg-neutral-700 rounded-lg overflow-hidden shadow-lg animate-pulse"
+                                class="bg-white dark:bg-neutral-700 rounded-lg overflow-hidden animate-pulse"
                             >
                                 <div class="relative w-full aspect-square bg-neutral-300 dark:bg-neutral-600">
                                     <div class="absolute top-2 right-2 w-16 h-5 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
@@ -167,39 +166,24 @@ export default function Skeleton({ type, isDetail }) {
     }
     if (type == "work") {
         return (
-            <div className="w-[90%] max-w-3xl mx-auto mt-10 flex flex-col gap-8 animate-pulse">
-                <h4 className="hidden md:block lg:block font-semibold bg-neutral-300 dark:bg-neutral-500 rounded-lg w-1/2 h-6"></h4>
-
-                <div className="rounded-2xl p-4 bg-neutral-200 dark:bg-neutral-700 transition-transform duration-300 shadow-lg">
-                    <div className="h-5 bg-neutral-300 dark:bg-neutral-600 rounded w-1/3 mb-2"></div>
-                    <div className="h-4 bg-neutral-200 dark:bg-neutral-500 rounded w-2/3 mb-4"></div>
-                    <div className="space-y-2">
-                        <div className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-full"></div>
-                        <div className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[90%]"></div>
-                        <div className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[85%]"></div>
+            <div class="w-[90%] max-w-3xl mx-auto mt-10 flex flex-col gap-8 animate-pulse">
+                <h4 class="hidden md:block lg:block text-2xl font-semibold text-neutral-900 dark:text-neutral-200 bg-neutral-300 dark:bg-neutral-700 h-7 w-2/3 rounded"></h4>
+                {[...Array(3)].map((_, i) => (
+                    <div
+                        key={i}
+                        class="rounded-2xl p-4 bg-slate-300/50 dark:bg-slate-700/50 space-y-4"
+                    >
+                        <div class="h-5 w-1/4 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                        <div class="h-4 w-1/2 bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                        <div class="h-4 w-full bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                        <div class="h-4 w-[90%] bg-neutral-300 dark:bg-neutral-700 rounded"></div>
+                        <ul class="mt-2 space-y-2">
+                            <li class="h-4 w-3/4 bg-neutral-300 dark:bg-neutral-700 rounded"></li>
+                            <li class="h-4 w-2/3 bg-neutral-300 dark:bg-neutral-700 rounded"></li>
+                            <li class="h-4 w-1/2 bg-neutral-300 dark:bg-neutral-700 rounded"></li>
+                        </ul>
                     </div>
-                    <ul className="mt-4 space-y-2">
-                        <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-1/2"></li>
-                        <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[60%]"></li>
-                        <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[70%]"></li>
-                        <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[55%]"></li>
-                        <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[65%]"></li>
-                    </ul>
-                </div>
-                <div className="rounded-2xl p-4 bg-neutral-200 dark:bg-neutral-700 transition-transform duration-300 shadow-lg">
-                    <div className="h-5 bg-neutral-300 dark:bg-neutral-600 rounded w-1/3 mb-2"></div>
-                    <div className="h-4 bg-neutral-200 dark:bg-neutral-500 rounded w-2/3 mb-4"></div>
-                    <div className="space-y-2">
-                        <div className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-full"></div>
-                        <div className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[90%]"></div>
-                        <div className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[85%]"></div>
-                    </div>
-                    <ul className="mt-4 space-y-2">
-                        <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-1/2"></li>
-                        <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[60%]"></li>
-                        <li className="h-3 bg-neutral-200 dark:bg-neutral-500 rounded w-[70%]"></li>
-                    </ul>
-                </div>
+                ))}
             </div>
         );
     }
@@ -215,7 +199,7 @@ export default function Skeleton({ type, isDetail }) {
                             {[...Array(3)].map((_, i) => (
                                 <div
                                     key={i}
-                                    className="bg-white dark:bg-neutral-700 rounded-2xl shadow-lg p-6 flex flex-col justify-between animate-pulse"
+                                    className="bg-white dark:bg-neutral-700 rounded-2xl p-6 flex flex-col justify-between animate-pulse"
                                 >
                                     <div>
                                         <div className="mb-4 bg-neutral-400 dark:bg-neutral-300 rounded-full w-12 h-12"></div>
@@ -240,23 +224,20 @@ export default function Skeleton({ type, isDetail }) {
                 <h4 className="hidden md:block lg:block font-semibold">
                     <div className="h-8 w-1/4 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
                 </h4>
-
                 {[...Array(4)].map((_, idx) => (
                     <div
                         key={idx}
-                        className="group relative grid pb-1 transition-transform sm:grid-cols-8 sm:gap-8 md:gap-4 animate-pulse"
+                        className="group relative grid pb-1 bg-slate-300/50 dark:bg-slate-700/50 px-4 py-4 transition-transform sm:grid-cols-8 sm:gap-8 md:gap-4 animate-pulse rounded-lg"
                     >
                         <header className="z-10 mb-2 mt-1 font-semibold uppercase tracking-wide sm:col-span-2">
                             <div className="h-4 w-1/2 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
                         </header>
-
-                        <div className="z-10 sm:col-span-6 space-y-4">
+                        <div className="z-10 sm:col-span-6 space-y-4 mb-3">
                             <div className="h-5 w-3/4 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
                             <div className="space-y-2">
                                 <div className="h-4 w-full bg-neutral-300 dark:bg-neutral-600 rounded"></div>
                                 <div className="h-4 w-5/6 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
                             </div>
-
                             <ul className="flex flex-wrap gap-2 mt-2">
                                 {[...Array(5)].map((__, j) => (
                                     <li key={j}>

@@ -111,7 +111,7 @@ export default function ProductFilterMobile({
                                     onChange={(e) =>
                                         setPrice([e.target.value, price[1]])
                                     }
-                                    className="w-1/2 px-2 py-1 border rounded text-sm bg-white"
+                                    className="w-1/2 px-2 py-1 border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded text-sm bg-white"
                                 />
                                 <input
                                     type="text"
@@ -128,7 +128,7 @@ export default function ProductFilterMobile({
                                     onChange={(e) =>
                                         setPrice([price[0], e.target.value])
                                     }
-                                    className="w-1/2 px-2 py-1 border rounded text-sm bg-white"
+                                    className="w-1/2 px-2 py-1 border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded text-sm bg-white"
                                 />
                             </div>
                         </div>
@@ -156,10 +156,14 @@ export default function ProductFilterMobile({
         </>
     ) : (
         <div className="hidden md:block lg:block w-64 p-3 fixed h-full overflow-y-auto">
-            <div className="p-4 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-lg">
-                <h2 className="text-lg font-bold mb-4">Filters</h2>
+            <div className="p-4 bg-white dark:bg-neutral-700 rounded-lg">
+                <h2 className="text-lg font-bold mb-4 text-neutral-900 dark:text-neutral-100">
+                    Filters
+                </h2>
                 <div className="mb-6">
-                    <h3 className="font-medium mb-2">Category</h3>
+                    <h3 className="font-medium mb-2 text-neutral-900 dark:text-neutral-100">
+                        Category
+                    </h3>
                     <Select
                         options={optionCategory}
                         value={selectedCategory}
@@ -183,7 +187,7 @@ export default function ProductFilterMobile({
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
+                    <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-2">
                         Price Range
                     </label>
                     <div className="flex gap-2 items-center">
@@ -201,7 +205,7 @@ export default function ProductFilterMobile({
                             placeholder="Min"
                             value={price?.[0]}
                             onChange={handleMinPrice}
-                            className="w-1/2 px-2 py-1 border rounded text-sm"
+                            className="w-1/2 px-2 py-1 bg-white border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded text-sm"
                         />
                         <input
                             type="text"
@@ -216,7 +220,7 @@ export default function ProductFilterMobile({
                             placeholder="Max"
                             value={price?.[1]}
                             onChange={handleMaxPrice}
-                            className="w-1/2 px-2 py-1 border rounded text-sm"
+                            className="w-1/2 px-2 py-1 bg-white border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded text-sm"
                         />
                     </div>
                 </div>
