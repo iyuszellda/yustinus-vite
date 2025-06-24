@@ -1,14 +1,9 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 
 export default function ProductCard({ product, index }) {
     const fallbackSrc = "https://placehold.co/200x200?text=Image+Not+Found";
     return (
         <>
-            <Helmet>
-                <title>All Products | Yustinus Margiyuna</title>
-                <link rel="preload" as="image" href={product?.images[0]} />
-            </Helmet>
             <div className="bg-white dark:bg-neutral-700 rounded-lg overflow-hidden shadow group hover:shadow-xl transition duration-300 ease-in-out relative">
                 <Link
                     to={`/demo/product/detail/${product.id}`}
