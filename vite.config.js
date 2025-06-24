@@ -1,17 +1,20 @@
-import tailwindcss from "@tailwindcss/vite";
-import viteCompression from "vite-plugin-compression";
 import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import compression from "vite-plugin-compression";
+import viteCompression from "vite-plugin-compression";
 import react from "@vitejs/plugin-react-swc";
-import { imagetools } from "vite-imagetools";
 
 export default defineConfig({
     plugins: [
-        react(),
-        imagetools(),
+        react({
+            fastRefresh: false,
+            jsxRuntime: "classic",
+        }),
         tailwindcss(),
+        compression(),
         viteCompression({
-            algorithm: "brotliCompress", // or 'gzip'
-            ext: ".br", // '.gz' for gzip
+            algorithm: "brotliCompress",
+            ext: ".br",
         }),
     ],
     resolve: {
