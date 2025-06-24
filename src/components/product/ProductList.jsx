@@ -189,7 +189,10 @@ export default function ProductList() {
                                     ref={lastProductRef}
                                     key={`product-${product.id}`}
                                 >
-                                    <ProductCard product={product} />
+                                    <ProductCard
+                                        product={product}
+                                        index={index}
+                                    />
                                 </div>
                             );
                         } else {
@@ -197,6 +200,7 @@ export default function ProductList() {
                                 <ProductCard
                                     key={`product-${product.id}`}
                                     product={product}
+                                    index={index}
                                 />
                             );
                         }
