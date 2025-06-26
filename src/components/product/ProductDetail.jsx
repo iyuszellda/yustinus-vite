@@ -78,7 +78,7 @@ export default function ProductDetail() {
                     <SkeletonImage
                         src={mainImage}
                         alt={product.title}
-                        className="rounded-lg object-contain w-full aspect-[3/3] max-w-md mx-auto h-96"
+                        className="rounded-lg object-contain w-full aspect-[3/3] max-w-md mx-auto h-auto"
                     />
                     <div className="flex gap-2 justify-center">
                         {product.images &&
