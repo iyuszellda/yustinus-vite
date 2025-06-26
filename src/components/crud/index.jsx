@@ -11,9 +11,6 @@ const PAGE_LIMIT = 5;
 export default function ProductTable() {
     const [filterText, setFilterText] = useState("");
     const [products, setProducts] = useState([]);
-    const filteredProducts = products.filter((product) =>
-        product.title.toLowerCase().includes(filterText.toLowerCase()),
-    );
     const [categories, setCategories] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
@@ -23,6 +20,9 @@ export default function ProductTable() {
     const [header, setHeader] = useState(1);
     const observer = useRef();
     const [isMobile, setIsMobile] = useState(false);
+    const filteredProducts = products.filter((product) =>
+        product.title.toLowerCase().includes(filterText.toLowerCase()),
+    );
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 767px)");

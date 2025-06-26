@@ -1,31 +1,55 @@
 import App from "./App";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Work from "./pages/Work";
-import Experience from "./pages/Experience";
-import Demo from "./pages/Demo";
-import ProductList from "./components/product/ProductList";
-import ProductDetail from "./components/product/ProductDetail";
-import CrudIndex from "./components/crud/index";
 import NotFound from "./pages/NotFound";
-import Gallery from "./components/work/Gallery";
+import { lazy } from "react";
+import { withLazyRoute } from "./utils/withLazyRoute";
 import { createBrowserRouter } from "react-router-dom";
 
+// Lazy imports
+const Home = lazy(() => import("./pages/Home"));
+const Work = lazy(() => import("./pages/Work"));
+const Demo = lazy(() => import("./pages/Demo"));
+const About = lazy(() => import("./pages/About"));
+const Gallery = lazy(() => import("./components/work/Gallery"));
+const CrudIndex = lazy(() => import("./components/crud/index"));
+const Experience = lazy(() => import("./pages/Experience"));
+const ProductList = lazy(() => import("./components/product/ProductList"));
+const ProductDetail = lazy(() => import("./components/product/ProductDetail"));
+
+// Route config
 const routes = [
     {
         path: "/",
         element: <App />,
         errorElement: <NotFound />,
         children: [
-            { index: true, element: <Home /> },
-            { path: "about", element: <About /> },
-            { path: "work", element: <Work /> },
-            { path: "experience", element: <Experience /> },
-            { path: "demo", element: <Demo /> },
-            { path: "demo/product", element: <ProductList /> },
-            { path: "demo/crud", element: <CrudIndex /> },
-            { path: "demo/product/detail/:id", element: <ProductDetail /> },
-            { path: "work/gallery/:companyId/:appId", element: <Gallery /> },
+            { index: true, element: withLazyRoute(Home, "home", "home") },
+            { path: "about", element: withLazyRoute(About, "about", "about") },
+            { path: "work", element: withLazyRoute(Work, "work", "work") },
+            { path: "demo", element: withLazyRoute(Demo, "demo", "demo") },
+            {
+                path: "demo/crud",
+                element: withLazyRoute(CrudIndex, "crud", "crud"),
+            },
+            {
+                path: "experience",
+                element: withLazyRoute(Experience, "experience", "experience"),
+            },
+            {
+                path: "demo/product",
+                element: withLazyRoute(ProductList, "product", "product"),
+            },
+            {
+                path: "demo/product/detail/:id",
+                element: withLazyRoute(
+                    ProductDetail,
+                    "detail",
+                    "product-detail",
+                ),
+            },
+            {
+                path: "work/gallery/:companyId/:appId",
+                element: withLazyRoute(Gallery, "gallery", "gallery"),
+            },
         ],
     },
 ];

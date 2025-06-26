@@ -19,7 +19,7 @@ export default function NotFound() {
             <button
                 aria-label="page not found"
                 onClick={goBack}
-                className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
             >
                 Go Back
             </button>
