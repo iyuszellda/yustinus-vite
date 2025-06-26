@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef, useCallback } from "react";
+import { Edit, Trash2 } from "lucide-react";
 import ModalForm from "./ModalForm";
 import ProductApi from "@/lib/api/productApi";
 import Skeleton from "@/components/skeleton/Skeleton";
 import CrudFilter from "./CrudFilter";
-import { Edit, Trash2 } from "lucide-react";
+import SkeletonImage from "@/components/skeleton/SkeletonImage";
 
 const PAGE_LIMIT = 5;
 
@@ -20,7 +21,6 @@ export default function ProductTable() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentProduct, setCurrentProduct] = useState({});
     const [header, setHeader] = useState(1);
-    const fallbackSrc = "https://placehold.co/400x400?text=Image+Not+Found";
     const observer = useRef();
     const [isMobile, setIsMobile] = useState(false);
 
@@ -183,13 +183,10 @@ export default function ProductTable() {
                                             ${product.price}
                                         </td>
                                         <td className="py-3 px-4 border-b">
-                                            <img
+                                            <SkeletonImage
                                                 src={product.images[0]}
                                                 alt={product.title}
-                                                className="w-16 h-16 object-cover rounded"
-                                                onError={(e) => {
-                                                    e.target.src = fallbackSrc;
-                                                }}
+                                                className="w-16 h-16 object-cover rounded aspect-[3/3] max-w-md mx-auto"
                                             />
                                         </td>
                                         <td className="py-3 px-4 border-b">

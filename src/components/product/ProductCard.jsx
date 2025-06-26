@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SkeletonImage from "@/components/skeleton/SkeletonImage";
 
 export default function ProductCard({ product, index }) {
     const fallbackSrc = "https://placehold.co/200x200?text=Image+Not+Found";
@@ -13,16 +14,10 @@ export default function ProductCard({ product, index }) {
                         <div className="absolute top-1 right-1 text-white text-xs font-semibold px-3 py-1 rounded z-10">
                             {product.category?.name}
                         </div>
-                        <img
+                        <SkeletonImage
                             src={product.images[0]}
                             alt={product.title}
-                            onError={(e) => {
-                                e.target.src = fallbackSrc;
-                            }}
-                            width={160}
-                            height={160}
                             className="w-full aspect-[3/3] object-cover group-hover:opacity-75"
-                            loading={index < 2 ? "eager" : "lazy"}
                         />
                         <div className="absolute bottom-2 left-2 bg-sky-600/90 text-white text-sm font-bold px-3 py-1 rounded">
                             ${product.price}
