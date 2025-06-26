@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import ProductFilter from "./ProductFilter";
 import ProductApi from "@/lib/api/productApi";
 import Skeleton from "@/components/skeleton/Skeleton";
+import useIsAtBottom from "@/hooks/useIsAtBottom";
 
 const PRODUCTS_PER_PAGE = 8;
 
@@ -17,6 +18,7 @@ export default function ProductList() {
     const [price, setPrice] = useState(["", ""]);
     const fallbackSrc = "https://placehold.co/400x400?text=Image+Not+Found";
     const observerRef = useRef();
+    const isAtBottom = useIsAtBottom(100);
 
     const lastProductRef = useCallback(
         (node) => {
@@ -153,6 +155,7 @@ export default function ProductList() {
 
     return (
         <div className="flex min-h-screen md:mt-0 mt-14">
+            {/* Mobile Filter */}
             <ProductFilter
                 optionCategory={optionCategory}
                 selectedCategory={selectedCategory}
@@ -166,6 +169,8 @@ export default function ProductList() {
                 handleMinPrice={handleMinPrice}
                 handleMaxPrice={handleMaxPrice}
             />
+
+            {/* Desktop Filter */}
             <ProductFilter
                 optionCategory={optionCategory}
                 selectedCategory={selectedCategory}
@@ -212,7 +217,7 @@ export default function ProductList() {
                         ))}
                 </div>
 
-                {!hasMore && products.length > 0 && (
+                {!hasMore && isAtBottom && products.length > 0 && (
                     <div className="text-center text-xs mt-6 text-neutral-700 dark:text-neutral-400">
                         You have reached the end of the product list.
                     </div>
