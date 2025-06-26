@@ -5,7 +5,7 @@ export default function CrudFilter({
     isMobile,
 }) {
     return isMobile ? (
-        <div className="fixed mt-2 top-9 left-0 right-0 flex bg-white px-4 py-4 shadow-md justify-between items-center flex-col md:flex-row gap-2 mb-4 rounded-md">
+        <div className="fixed z-40 mt-2 top-9 left-0 right-0 flex bg-white px-4 py-4 shadow-md justify-between items-center flex-col md:flex-row gap-2 mb-4 rounded-md">
             <input
                 type="text"
                 placeholder="Search products..."
