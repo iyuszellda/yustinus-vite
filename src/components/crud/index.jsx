@@ -192,6 +192,7 @@ export default function ProductTable() {
                                         <td className="py-3 px-4 border-b">
                                             <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-2 items-center gap-1">
                                                 <button
+                                                    aria-label="edit product"
                                                     onClick={() =>
                                                         handleEdit(product)
                                                     }
@@ -203,6 +204,7 @@ export default function ProductTable() {
                                                     </span>
                                                 </button>
                                                 <button
+                                                    aria-label="delete product"
                                                     onClick={() =>
                                                         handleDelete(product.id)
                                                     }
