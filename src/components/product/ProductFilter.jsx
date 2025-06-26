@@ -56,6 +56,7 @@ export default function ProductFilterMobile({
                             Filters
                         </h2>
                         <button
+                            aria-label="Close filter"
                             onClick={() => setShowFilter(false)}
                             className="text-sm text-gray-600 dark:text-gray-300"
                         >
@@ -133,6 +134,7 @@ export default function ProductFilterMobile({
                     </div>
                     <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-neutral-800 border-t border-neutral-300 dark:border-neutral-700 p-4 flex gap-2">
                         <button
+                            aria-label="show filter"
                             className="flex-1 px-2 py-2 text-sm bg-gray-100 dark:bg-neutral-700 text-gray-800 dark:text-white rounded hover:bg-gray-200 dark:hover:bg-neutral-600"
                             onClick={() => {
                                 handleClear();
@@ -143,6 +145,7 @@ export default function ProductFilterMobile({
                             Clear
                         </button>
                         <button
+                            aria-label="apply filter"
                             className="flex-1 px-2 py-2 text-sm bg-amber-500 dark:bg-amber-300 text-white dark:text-neutral-800 rounded hover:bg-amber-400"
                             onClick={applyHandler}
                         >
@@ -221,6 +224,7 @@ export default function ProductFilterMobile({
                 </div>
                 <div className="flex gap-2 items-center">
                     <button
+                        aria-label="clear filter"
                         className="w-1/2 px-2 py-1 text-sm bg-gray-300 dark:bg-gray-800 text-gray-800 dark:text-white rounded hover:bg-gray-200 dark:hover:bg-gray-900"
                         onClick={handleClear}
                         disabled={isResetting}

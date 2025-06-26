@@ -120,6 +120,7 @@ export default function Navbar({
                         })}
 
                         <button
+                            aria-label="Close Navbar"
                             className="text-gray-900 dark:text-white focus:outline-none"
                             onClick={() => setIsOpen(!isOpen)}
                         >

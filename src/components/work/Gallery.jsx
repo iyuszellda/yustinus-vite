@@ -46,6 +46,7 @@ export default function Gallery() {
                 <div className="p-10 text-center text-neutral-500">
                     Gallery not found.
                     <button
+                        aria-label="back to list work"
                         onClick={goBack}
                         className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
                     >
@@ -60,6 +61,7 @@ export default function Gallery() {
         <>
             <div className="mt-5 mb-5 md:mt-0 lg:mt-0 grid grid-cols-3 md:grid-cols-9 gap-4">
                 <button
+                    aria-label="back to list work but cooler"
                     onClick={goBack}
                     className="font-semibold cursor-pointer rounded-full text-neutral-800 dark:text-neutral-200 text-md"
                 >

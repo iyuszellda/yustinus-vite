@@ -52,6 +52,7 @@ export default function ProductDetail() {
                 <div className="p-10 text-center text-neutral-500">
                     Product not found.
                     <button
+                        aria-label="back to list product not found"
                         onClick={goBack}
                         className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
                     >
@@ -66,6 +67,7 @@ export default function ProductDetail() {
         <>
             <div className="mt-5 md:mb-4 lg:mb-4 md:mt-0 lg:mt-0 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 <button
+                    aria-label="back to list product"
                     onClick={goBack}
                     className="font-semibold cursor-pointer rounded-full text-neutral-800 dark:text-neutral-200 text-md"
                 >
@@ -109,7 +111,10 @@ export default function ProductDetail() {
                     <p className="text-sm text-neutral-700 dark:text-neutral-300">
                         {product.description}
                     </p>
-                    <button className="text-xs px-5 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition">
+                    <button
+                        aria-label="add to card button"
+                        className="text-xs px-5 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition"
+                    >
                         Add to Cart
                     </button>
                 </div>
