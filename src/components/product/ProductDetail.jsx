@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductApi from "@/lib/api/productApi";
 import Skeleton from "@/components/skeleton/Skeleton";
+import SkeletonImage from "@/components/skeleton/SkeletonImage";
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -9,7 +10,6 @@ export default function ProductDetail() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const [mainImage, setMainImage] = useState("");
-    const fallbackSrc = "https://placehold.co/400x400?text=Image+Not+Found";
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -75,30 +75,24 @@ export default function ProductDetail() {
             <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-5">
                 {/* Image Gallery */}
                 <div className="space-y-4">
-                    <img
+                    <SkeletonImage
                         src={mainImage}
                         alt={product.title}
                         className="rounded-lg object-contain w-full aspect-[3/3] max-w-md mx-auto h-96"
-                        onError={() => {
-                            if (mainImage !== fallbackSrc) {
-                                setMainImage(fallbackSrc);
-                            }
-                        }}
-                        referrerPolicy="no-referrer"
                     />
                     <div className="flex gap-2 justify-center">
                         {product.images &&
                             product.images.map((img, idx) => (
-                                <img
+                                <SkeletonImage
                                     key={idx}
                                     src={img}
                                     alt={`Thumbnail ${idx}`}
-                                    onClick={() => setMainImage(img)}
                                     className={`w-16 h-16 rounded-md cursor-pointer border-2 ${
                                         img === mainImage
                                             ? "border-blue-600"
                                             : "border-transparent"
                                     }`}
+                                    onClick={() => setMainImage(img)}
                                 />
                             ))}
                     </div>

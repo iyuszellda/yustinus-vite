@@ -37,17 +37,17 @@ export default function SkeletonCard({ isDetail, isProduct }) {
             </div>
         )
     ) : (
-        <div class="bg-white dark:bg-neutral-700 rounded-lg overflow-hidden shadow-lg animate-pulse">
-            <div class="relative w-full aspect-square bg-neutral-300 dark:bg-neutral-600">
-                <div class="absolute top-2 right-2 w-16 h-5 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
-                <div class="absolute bottom-2 left-2 w-12 h-6 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
+        <div className="bg-white dark:bg-neutral-700 rounded-lg overflow-hidden shadow-lg animate-pulse">
+            <div className="relative w-full aspect-square bg-neutral-300 dark:bg-neutral-600">
+                <div className="absolute top-2 right-2 w-16 h-5 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
+                <div className="absolute bottom-2 left-2 w-12 h-6 bg-neutral-400 dark:bg-neutral-500 rounded"></div>
             </div>
-            <div class="px-4 py-3">
-                <div class="h-5 w-3/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-2"></div>
-                <div class="space-y-1">
-                    <div class="h-3 w-full bg-neutral-300 dark:bg-neutral-600 rounded"></div>
-                    <div class="h-3 w-5/6 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
-                    <div class="h-3 w-2/3 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+            <div className="px-4 py-3">
+                <div className="h-5 w-3/4 bg-neutral-300 dark:bg-neutral-600 rounded mb-2"></div>
+                <div className="space-y-1">
+                    <div className="h-3 w-full bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                    <div className="h-3 w-5/6 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
+                    <div className="h-3 w-2/3 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
                 </div>
             </div>
         </div>

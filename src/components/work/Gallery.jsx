@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Skeleton from "@/components/skeleton/Skeleton";
+import SkeletonImage from "@/components/skeleton/SkeletonImage";
 import WorksApi from "@/lib/json/works.json";
 
 export default function Gallery() {
@@ -67,19 +68,19 @@ export default function Gallery() {
             </div>
             <div className="w-full px-4">
                 <div className="space-y-4">
-                    <img
+                    <SkeletonImage
                         src={`/images/${mainImage}`}
                         alt={gallery.name}
                         className="rounded-lg object-cover w-[100%] h-auto"
                     />
                     <div className="flex gap-2 justify-center">
                         {gallery.detail.images.map((img, idx) => (
-                            <img
+                            <SkeletonImage
                                 key={idx}
                                 src={`/images/${img}`}
                                 alt={`Thumbnail ${idx}`}
                                 onClick={() => setMainImage(img)}
-                                className={`w-20 h-auto rounded-md cursor-pointer border-2 ${
+                                className={`w-20 h-auto rounded-md cursor-pointer hover:opacity-75 border-2 ${
                                     img === mainImage
                                         ? "border-blue-600"
                                         : "border-transparent"

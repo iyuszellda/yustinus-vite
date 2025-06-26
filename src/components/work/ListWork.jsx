@@ -16,11 +16,11 @@ export default function ListWork() {
                         {work.description}
                     </p>
                     {work.applications && (
-                        <ul className="font-semibold text-xs mt-2 list-disc list-inside">
+                        <div className="font-semibold text-xs mt-2 list-disc list-inside">
                             {work.applications.map((app, i) => (
                                 <li
                                     key={i}
-                                    className="mb-2 text-teal-950 dark:text-teal-300 hover:text-teal-700 dark:hover:text-teal-400 transition-colors duration-200"
+                                    className="break-inside-avoid mb-2 text-teal-950 dark:text-teal-300 hover:text-teal-700 dark:hover:text-teal-400 transition-colors duration-200"
                                     aria-label={`Application: ${app.name}`}
                                 >
                                     {app.link && (
@@ -54,14 +54,14 @@ export default function ListWork() {
                                     {app.link && (
                                         <Link
                                             to={`/work/gallery/${work.id}/${app.id}`}
-                                            className="font-semibold text-sky-700 dark:text-sky-300 ml-2 items-center rounded-full bg-teal-500/10 px-3 py-1 text-xs leading-5"
+                                            className="font-semibold text-sky-700 dark:text-sky-300 ml-2 items-center rounded-full bg-teal-500/10 px-3 py-1 text-xs"
                                         >
                                             See Gallery
                                         </Link>
                                     )}
                                 </li>
                             ))}
-                        </ul>
+                        </div>
                     )}
                 </div>
             ))}

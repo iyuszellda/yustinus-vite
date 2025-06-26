@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import ProductApi from "@/lib/api/productApi";
+import SkeletonImage from "@/components/skeleton/SkeletonImage";
 
 const ModalForm = ({
     header,
@@ -139,6 +140,7 @@ const ModalForm = ({
                             id="title"
                             name="title"
                             type="text"
+                            placeholder="Type Title"
                             value={productData?.title || ""}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
@@ -158,7 +160,7 @@ const ModalForm = ({
                             onChange={handleSelectImage}
                             formatOptionLabel={({ label, image }) => (
                                 <div className="flex items-center gap-2">
-                                    <img
+                                    <SkeletonImage
                                         src={image}
                                         alt={label}
                                         className="w-6 h-6 rounded-full"
@@ -185,7 +187,7 @@ const ModalForm = ({
                                 onChange={handleSelectCategory}
                                 formatOptionLabel={({ label, image }) => (
                                     <div className="flex items-center gap-2">
-                                        <img
+                                        <SkeletonImage
                                             src={image}
                                             alt={label}
                                             className="w-6 h-6 rounded-full"
@@ -210,6 +212,7 @@ const ModalForm = ({
                             id="price"
                             name="price"
                             type="number"
+                            placeholder="Numbers only"
                             value={productData?.price || ""}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
@@ -225,6 +228,7 @@ const ModalForm = ({
                         <textarea
                             id="description"
                             name="description"
+                            placeholder="Type Description"
                             value={productData?.description || ""}
                             onChange={handleInputChange}
                             className="mt-1 px-3 py-2 w-full border border-neutral-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
@@ -234,13 +238,13 @@ const ModalForm = ({
                         <button
                             type="button"
                             onClick={onClose}
-                            className="px-4 py-2 bg-red-500 rounded hover:bg-red-600 text-white"
+                            className="px-4 py-2 bg-red-500 rounded hover:bg-red-600 text-white cursor-pointer"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
                         >
                             Save
                         </button>

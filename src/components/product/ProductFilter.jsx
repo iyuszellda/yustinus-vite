@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import Select from "react-select";
+import SkeletonImage from "@/components/skeleton/SkeletonImage";
 
 export default function ProductFilterMobile({
     optionCategory,
@@ -74,13 +75,10 @@ export default function ProductFilterMobile({
                                 placeholder="Choose category"
                                 formatOptionLabel={({ label, image }) => (
                                     <div className="flex items-center gap-2">
-                                        <img
+                                        <SkeletonImage
                                             src={image}
                                             alt={label}
                                             className="w-6 h-6 rounded-full object-cover"
-                                            onError={(e) => {
-                                                e.target.src = fallbackSrc;
-                                            }}
                                         />
                                         <span>{label}</span>
                                     </div>
@@ -171,13 +169,10 @@ export default function ProductFilterMobile({
                         placeholder="Choose category"
                         formatOptionLabel={({ label, image }) => (
                             <div className="flex items-center gap-2">
-                                <img
+                                <SkeletonImage
                                     src={image}
                                     alt={label}
-                                    className="w-6 h-6 rounded-full"
-                                    onError={(e) => {
-                                        e.target.src = fallbackSrc;
-                                    }}
+                                    className="w-6 h-6 rounded-full object-cover"
                                 />
                                 <span>{label}</span>
                             </div>
