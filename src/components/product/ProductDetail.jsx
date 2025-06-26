@@ -54,7 +54,7 @@ export default function ProductDetail() {
                     <button
                         aria-label="back to list product not found"
                         onClick={goBack}
-                        className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
+                        className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 cursor-pointer rounded-full text-neutral-800"
                     >
                         ← Go Back
                     </button>
