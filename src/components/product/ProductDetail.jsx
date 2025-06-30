@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { FiArrowLeft, FiShoppingCart } from "react-icons/fi";
 import ProductApi from "@/lib/api/productApi";
 import Skeleton from "@/components/skeleton/Skeleton";
 import SkeletonImage from "@/components/skeleton/SkeletonImage";
@@ -45,7 +46,7 @@ export default function ProductDetail() {
                 <p>Product not found.</p>
                 <button
                     onClick={goBack}
-                    className="mt-4 px-4 py-2 bg-neutral-200 text-neutral-800 rounded-full hover:bg-neutral-300 transition"
+                    className="mt-4 px-4 py-2 text-neutral-700 cursor-pointer dark:text-neutral-300"
                 >
                     ← Go Back
                 </button>
@@ -62,13 +63,15 @@ export default function ProductDetail() {
             className="max-w-6xl mx-auto px-4 py-6 space-y-8 overflow-x-hidden"
         >
             {/* Back Button */}
-            <div>
-                <button
+            <div className="items-center justify-between mb-4 md:block hidden">
+                <motion.button
                     onClick={goBack}
-                    className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 cursor-pointer"
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
-                    ← Back
-                </button>
+                    <FiArrowLeft className="text-base" />
+                    Back
+                </motion.button>
             </div>
 
             {/* Product Detail */}
@@ -120,8 +123,9 @@ export default function ProductDetail() {
                     </p>
                     <button
                         aria-label="add to cart"
-                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition text-sm"
+                        className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition text-sm"
                     >
+                        <FiShoppingCart className="text-lg" />
                         Add to Cart
                     </button>
                 </motion.div>
