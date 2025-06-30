@@ -4,6 +4,7 @@ import logo from "../../assets/yustinus_logo.avif";
 import darkLogo from "../../assets/yustinus_logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { FiArrowLeft } from "react-icons/fi";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -74,47 +75,72 @@ export default function Navbar({
             <div className="block sm:hidden">
                 <nav className="dark:bg-neutral-700 bg-neutral-100 py-2 dark:border-b-1 dark:border-neutral-600 shadow-md p-4 sm:hidden">
                     <div className="flex justify-between items-center">
-                        <Link
-                            onClick={homeMobileClick}
-                            aria-label="logo"
-                            className="flex items-center mr-4"
-                            to="/"
-                        >
-                            <img
-                                src={theme == false ? logo : darkLogo}
-                                alt="yustinus logo"
-                                className={`flex w-7 h-7 rounded-full`}
-                            />
-                        </Link>
+                        {detailPage.some((link) =>
+                            location.pathname.startsWith(link.page),
+                        ) ? (
+                            <motion.button
+                                onClick={() => window.history.back()}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex items-center gap-1 text-sm font-medium text-neutral-700 dark:text-neutral-200"
+                            >
+                                <FiArrowLeft className="text-base" />
+                            </motion.button>
+                        ) : (
+                            <Link
+                                onClick={homeMobileClick}
+                                aria-label="logo"
+                                className="flex items-center mr-4"
+                                to="/"
+                            >
+                                <img
+                                    src={theme == false ? logo : darkLogo}
+                                    alt="yustinus logo"
+                                    className={`flex w-7 h-7 rounded-full`}
+                                />
+                            </Link>
+                        )}
                         {currentPage.map((link) => {
                             return (
                                 location.pathname === link.page && (
-                                    <span
+                                    <motion.span
                                         key={link.page}
+                                        initial={{ opacity: 0, y: -5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -5 }}
+                                        transition={{ duration: 0.3 }}
                                         className="text-gray-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
-                                    </span>
+                                    </motion.span>
                                 )
                             );
                         })}
+
                         {detailPage.map((link) => {
                             return (
                                 (prodDetail === link.page && (
-                                    <span
+                                    <motion.span
                                         key={link.page}
+                                        initial={{ opacity: 0, y: -5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -5 }}
+                                        transition={{ duration: 0.3 }}
                                         className="text-gray-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
-                                    </span>
+                                    </motion.span>
                                 )) ||
                                 (galleryDetail === link.page && (
-                                    <span
+                                    <motion.span
                                         key={link.page}
+                                        initial={{ opacity: 0, y: -5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -5 }}
+                                        transition={{ duration: 0.3 }}
                                         className="text-gray-900 dark:text-white font-semibold"
                                     >
                                         {link.name}
-                                    </span>
+                                    </motion.span>
                                 ))
                             );
                         })}

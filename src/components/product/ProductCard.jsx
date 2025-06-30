@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import SkeletonImage from "@/components/skeleton/SkeletonImage";
 
 export default function ProductCard({ product, index }) {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.4 }}
+        <div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
             className="bg-white dark:bg-neutral-700 rounded-lg overflow-hidden shadow group hover:shadow-xl transition duration-300 ease-in-out relative"
         >
             <Link to={`/demo/product/detail/${product.id}`} className="block">
@@ -34,6 +32,6 @@ export default function ProductCard({ product, index }) {
                     </p>
                 </div>
             </Link>
-        </motion.div>
+        </div>
     );
 }

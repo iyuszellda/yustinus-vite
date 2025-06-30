@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { FiArrowLeft } from "react-icons/fi";
 import Skeleton from "@/components/skeleton/Skeleton";
 import SkeletonImage from "@/components/skeleton/SkeletonImage";
 import WorksApi from "@/lib/json/works.json";
@@ -59,16 +61,18 @@ export default function Gallery() {
 
     return (
         <>
-            <div className="mt-5 mb-5 md:mt-0 lg:mt-0 grid grid-cols-3 md:grid-cols-9 gap-4">
-                <button
-                    aria-label="back to list work but cooler"
+            {/* Back Button */}
+            <div className="items-center justify-between mb-4 md:block hidden">
+                <motion.button
                     onClick={goBack}
-                    className="font-semibold cursor-pointer rounded-full text-neutral-800 dark:text-neutral-200 text-md"
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
-                    ← Back
-                </button>
+                    <FiArrowLeft className="text-base" />
+                    Back
+                </motion.button>
             </div>
-            <div className="w-full px-4">
+            <div className="w-full px-4 mt-10 md:mt-1">
                 <div className="space-y-4">
                     <SkeletonImage
                         src={`/images/${mainImage}`}
