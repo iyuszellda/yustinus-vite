@@ -71,7 +71,7 @@ export default function ProductTable() {
         };
 
         fetchProducts();
-    }, [page]); // Only depends on page
+    }, [page]);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -87,7 +87,7 @@ export default function ProductTable() {
     }, []);
 
     const handleAdd = () => {
-        setCurrentProduct([]);
+        setCurrentProduct({});
         setIsModalOpen(true);
         setHeader(1);
     };
@@ -110,8 +110,8 @@ export default function ProductTable() {
                     ),
                 );
             } else {
-                await ProductApi.post(`/products`, data);
-                setProducts((prev) => [{ ...data }, ...prev]);
+                const response = await ProductApi.post(`/products`, data);
+                setProducts((prev) => [{ ...response.data }, ...prev]);
             }
 
             console.log("Product updated successfully");
@@ -137,7 +137,7 @@ export default function ProductTable() {
 
     return (
         <div className="w-full mx-auto">
-            <div className="overflow-x-auto">
+            <>
                 <h1 className="hidden md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
                     Product List
                 </h1>
@@ -148,48 +148,52 @@ export default function ProductTable() {
                     isMobile={isMobile}
                 />
                 <div
-                    className={`overflow-x-auto rounded-md shadow-md ${isMobile ? "mt-30" : ""}`}
+                    className={`w-full rounded-md shadow-md ${isMobile ? "mt-30" : ""}`}
                 >
-                    <table className="text-sm min-w-full bg-white">
+                    <table className="table-fixed w-full text-sm min-w-full bg-white">
                         <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
                             <tr>
-                                <th className="py-3 px-4 text-left border-b">
+                                <th className="py-1 px-1 md:py-3 md:px-3 text-left border-b">
                                     Title
                                 </th>
-                                <th className="py-3 px-4 text-left border-b">
+                                <th className="py-1 px-1 md:py-3 md:px-3 text-center border-b">
                                     Price
                                 </th>
-                                <th className="py-3 px-4 text-left border-b">
+                                <th className="py-1 px-1 md:py-3 md:px-3 text-center border-b">
                                     Image
                                 </th>
-                                <th className="py-3 px-4 text-center border-b">
+                                <th className="py-1 px-1 md:py-3 md:px-3 text-center border-b">
                                     Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody className="bg-transparent">
                             {filteredProducts.map((product, index) => {
-                                const isLast = index === products.length - 1;
+                                const isLast =
+                                    index === filteredProducts.length - 1;
                                 return (
                                     <tr
-                                        key={index}
+                                        key={product.id}
                                         ref={isLast ? lastProductRef : null}
                                         className="text-neutral-900 hover:bg-slate-300 transition"
                                     >
-                                        <td className="py-3 px-4 border-b">
+                                        <td className="py-1 px-1 md:py-3 md:px-3 border-b break-words">
                                             {product.title}
                                         </td>
-                                        <td className="py-3 px-4 border-b">
+                                        <td className="py-1 px-1 md:py-3 md:px-3 text-center border-b break-words">
                                             ${product.price}
                                         </td>
-                                        <td className="py-3 px-4 border-b">
+                                        <td className="py-1 px-1 md:py-3 md:px-3 text-center border-b break-words">
                                             <SkeletonImage
-                                                src={product.images[0]}
+                                                src={
+                                                    product.images?.[0] ||
+                                                    "/fallback.jpg"
+                                                }
                                                 alt={product.title}
                                                 className="w-16 h-16 object-cover rounded aspect-[3/3] max-w-md mx-auto"
                                             />
                                         </td>
-                                        <td className="py-3 px-4 border-b">
+                                        <td className="py-1 px-1 md:py-3 md:px-3 border-b break-words">
                                             <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-2 items-center gap-1">
                                                 <button
                                                     aria-label="edit product"
@@ -212,7 +216,7 @@ export default function ProductTable() {
                                                 >
                                                     <Trash2 className="w-4 h-4" />
                                                     <span className="md:block hidden">
-                                                        Edit
+                                                        Delete
                                                     </span>
                                                 </button>
                                             </div>
@@ -223,7 +227,7 @@ export default function ProductTable() {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </>
 
             {loading && <Skeleton type="table" />}
             {!hasMore && (

@@ -5,8 +5,9 @@ export default function CrudFilter({
     isMobile,
 }) {
     return isMobile ? (
-        <div className="fixed z-40 mt-2 top-9 left-0 right-0 flex bg-white px-4 py-4 shadow-md justify-between items-center flex-col md:flex-row gap-2 mb-4 rounded-md">
+        <div className="z-10 fixed mt-2 top-9 left-0 right-0 flex bg-white px-4 py-4 shadow-md justify-between items-center flex-col md:flex-row gap-2 mb-4 rounded-md">
             <input
+                id="filter mobile"
                 type="text"
                 placeholder="Search products..."
                 value={filterText}
@@ -24,6 +25,7 @@ export default function CrudFilter({
     ) : (
         <div className="flex bg-white px-4 py-4 shadow-md justify-between items-center flex-col md:flex-row gap-2 mb-4 rounded-md">
             <input
+                id="filter desktop"
                 type="text"
                 placeholder="Search products..."
                 value={filterText}
