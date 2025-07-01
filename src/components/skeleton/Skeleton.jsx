@@ -188,32 +188,31 @@ export default function Skeleton({ type, isDetail }) {
         );
     }
     if (type == "demo") {
+        const SkeletonCard = () => {
+            return (
+                <div className="bg-white dark:bg-slate-700 rounded-2xl m-4 md:m-0 md:mt-0 shadow-lg p-6 flex flex-col justify-between animate-pulse">
+                    <div>
+                        <div className="h-12 w-12 mb-4 bg-neutral-300 dark:bg-neutral-600 rounded-full"></div>
+                        <div className="h-6 bg-neutral-300 dark:bg-neutral-600 rounded mb-2 w-3/4"></div>
+                        <div className="h-4 bg-neutral-200 dark:bg-neutral-500 rounded w-full mb-1"></div>
+                        <div className="h-4 bg-neutral-200 dark:bg-neutral-500 rounded w-5/6"></div>
+                    </div>
+                    <div className="mt-6">
+                        <div className="h-8 w-24 bg-neutral-300 dark:bg-neutral-600 rounded-lg"></div>
+                    </div>
+                </div>
+            );
+        };
+
         return (
             <Case>
-                <div className="w-full max-w-2xl mx-auto mt-10 flex flex-col gap-8 p-4">
-                    <div className="group relative pb-1 transition-transform sm:gap-8 md:gap-4">
-                        <div className="hidden md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
-                            Demo Projects
-                        </div>
-                        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {[...Array(3)].map((_, i) => (
-                                <div
-                                    key={i}
-                                    className="bg-white dark:bg-neutral-700 rounded-2xl p-6 flex flex-col justify-between animate-pulse"
-                                >
-                                    <div>
-                                        <div className="mb-4 bg-neutral-400 dark:bg-neutral-300 rounded-full w-12 h-12"></div>
-                                        <div className="h-6 bg-neutral-300 dark:bg-neutral-400 rounded w-3/4 mb-2"></div>
-                                        <div className="h-4 bg-neutral-300 dark:bg-neutral-400 rounded w-full mb-2"></div>
-                                        <div className="h-4 bg-neutral-300 dark:bg-neutral-400 rounded w-full"></div>
-                                    </div>
-                                    <div className="mt-6">
-                                        <div className="h-8 bg-neutral-300 dark:bg-neutral-400 rounded-lg w-20 mx-auto"></div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                <h3 class="hidden pt-15 md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
+                    Demo Projects
+                </h3>
+                <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <SkeletonCard />
+                    <SkeletonCard />
+                    <SkeletonCard />
                 </div>
             </Case>
         );
