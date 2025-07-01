@@ -8,18 +8,16 @@ import useIsAtBottom from "@/hooks/useIsAtBottom";
 const PRODUCTS_PER_PAGE = 8;
 
 export default function ProductList() {
-    const [products, setProducts] = useState([]);
+    const observerRef = useRef();
     const [page, setPage] = useState(1);
+    const isAtBottom = useIsAtBottom(100);
+    const [price, setPrice] = useState(["", ""]);
+    const [products, setProducts] = useState([]);
     const [hasMore, setHasMore] = useState(true);
+    const [category, setCategory] = useState("");
     const [isResetting, setIsResetting] = useState(false);
     const [optionCategory, setOptionCategory] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [category, setCategory] = useState("");
-    const [price, setPrice] = useState(["", ""]);
-    const fallbackSrc = "https://placehold.co/400x400?text=Image+Not+Found";
-    const observerRef = useRef();
-    const isAtBottom = useIsAtBottom(100);
-
     const lastProductRef = useCallback(
         (node) => {
             if (!hasMore || isResetting) return;
@@ -33,7 +31,6 @@ export default function ProductList() {
         },
         [hasMore, isResetting],
     );
-
     const loadProducts = useCallback(
         async (reset = false) => {
             try {
@@ -41,7 +38,6 @@ export default function ProductList() {
                     setIsResetting(true);
                     setProducts([]);
                 }
-
                 const params = {
                     categoryId: category,
                     price_min: price[0],
@@ -50,12 +46,10 @@ export default function ProductList() {
                 const response = await ProductApi.get(`/products/`, {
                     params,
                 });
-
                 if (category === "") {
                     const start = reset ? 0 : (page - 1) * PRODUCTS_PER_PAGE;
                     const end = start + PRODUCTS_PER_PAGE;
                     const ListProducts = response.data.slice(start, end);
-
                     setProducts((prev) => {
                         if (reset) return ListProducts;
                         const productIds = new Set(prev.map((p) => p.id));
@@ -64,7 +58,6 @@ export default function ProductList() {
                         );
                         return [...prev, ...uniqueIds];
                     });
-
                     setHasMore(end < response.data.length);
                 } else {
                     setProducts(response.data);
@@ -92,11 +85,9 @@ export default function ProductList() {
         },
         [page, category, price],
     );
-
     useEffect(() => {
         loadProducts();
     }, [loadProducts]);
-
     useEffect(() => {
         const loadListCategory = async () => {
             try {
@@ -125,7 +116,6 @@ export default function ProductList() {
 
         loadListCategory();
     }, []);
-
     function handleSelectCategory(option) {
         setProducts([]);
         setSelectedCategory(option);
@@ -133,7 +123,6 @@ export default function ProductList() {
         setPage(1);
         setIsResetting(true);
     }
-
     function handleClear() {
         setCategory(0);
         setPrice(["", ""]);
@@ -142,17 +131,14 @@ export default function ProductList() {
         setPage(1);
         setIsResetting(true);
     }
-
     function handleMinPrice(e) {
         setPrice([e.target.value, price[1]]);
     }
-
     function handleMaxPrice(e) {
         setProducts([]);
         setPrice([price[0], e.target.value]);
         setIsResetting(true);
     }
-
     return (
         <div className="flex min-h-screen md:mt-0 mt-14">
             {/* Mobile Filter */}
@@ -164,7 +150,6 @@ export default function ProductList() {
                 setPrice={setPrice}
                 handleClear={handleClear}
                 isResetting={isResetting}
-                fallbackSrc={fallbackSrc}
                 isMobile={true}
                 handleMinPrice={handleMinPrice}
                 handleMaxPrice={handleMaxPrice}
@@ -179,12 +164,10 @@ export default function ProductList() {
                 setPrice={setPrice}
                 handleClear={handleClear}
                 isResetting={isResetting}
-                fallbackSrc={fallbackSrc}
                 isMobile={false}
                 handleMinPrice={handleMinPrice}
                 handleMaxPrice={handleMaxPrice}
             />
-
             <div className="w-[100%] mx-auto md:ml-64 lg:ml-64">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 p-3">
                     {products.map((product, index) => {
@@ -210,13 +193,11 @@ export default function ProductList() {
                             );
                         }
                     })}
-
                     {(isResetting || hasMore) &&
                         Array.from({ length: 10 }).map((_, i) => (
                             <Skeleton key={i} type="card" />
                         ))}
                 </div>
-
                 {!hasMore && isAtBottom && products.length > 0 && (
                     <div className="text-center text-xs mt-6 text-neutral-700 dark:text-neutral-400">
                         You have reached the end of the product list.
