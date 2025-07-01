@@ -165,7 +165,14 @@ const ModalForm = ({
                                         alt={label}
                                         className="w-6 h-6 rounded-full"
                                     />
-                                    <span>{label}</span>
+                                    <span className="hidden md:block">
+                                        {label}
+                                    </span>
+                                    <span className="block md:hidden">
+                                        {label.length > 20
+                                            ? label.slice(0, 20) + "…"
+                                            : label}
+                                    </span>
                                 </div>
                             )}
                             className="react-select-container"
@@ -192,7 +199,14 @@ const ModalForm = ({
                                             alt={label}
                                             className="w-6 h-6 rounded-full"
                                         />
-                                        <span>{label}</span>
+                                        <span className="hidden md:block">
+                                            {label}
+                                        </span>
+                                        <span className="block md:hidden">
+                                            {label.length > 20
+                                                ? label.slice(0, 20) + "…"
+                                                : label}
+                                        </span>
                                     </div>
                                 )}
                                 className="react-select-container"

@@ -11,7 +11,6 @@ export default function ProductFilterMobile({
     setPrice,
     handleClear,
     isResetting,
-    fallbackSrc,
     isMobile,
     handleMinPrice,
     handleMaxPrice,
