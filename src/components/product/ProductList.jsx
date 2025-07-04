@@ -18,6 +18,7 @@ export default function ProductList() {
     const [isResetting, setIsResetting] = useState(false);
     const [optionCategory, setOptionCategory] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
+
     const lastProductRef = useCallback(
         (node) => {
             if (!hasMore || isResetting) return;
@@ -31,6 +32,7 @@ export default function ProductList() {
         },
         [hasMore, isResetting],
     );
+
     const loadProducts = useCallback(
         async (reset = false) => {
             try {
@@ -38,32 +40,36 @@ export default function ProductList() {
                     setIsResetting(true);
                     setProducts([]);
                 }
+
+                const offset = reset ? 0 : (page - 1) * PRODUCTS_PER_PAGE;
+                const limit = PRODUCTS_PER_PAGE;
+
                 const params = {
                     categoryId: category,
                     price_min: price[0],
                     price_max: price[1],
+                    offset: offset,
+                    limit: limit,
                 };
+
                 const response = await ProductApi.get(`/products/`, {
                     params,
                 });
-                if (category === "") {
-                    const start = reset ? 0 : (page - 1) * PRODUCTS_PER_PAGE;
-                    const end = start + PRODUCTS_PER_PAGE;
-                    const ListProducts = response.data.slice(start, end);
-                    setProducts((prev) => {
-                        if (reset) return ListProducts;
-                        const productIds = new Set(prev.map((p) => p.id));
-                        const uniqueIds = ListProducts.filter(
-                            (p) => !productIds.has(p.id),
-                        );
-                        return [...prev, ...uniqueIds];
-                    });
-                    setHasMore(end < response.data.length);
-                } else {
-                    setProducts(response.data);
-                    setHasMore(false);
-                    setPage(1);
-                }
+
+                const newProducts = response.data;
+
+                setProducts((prev) => {
+                    if (reset) return newProducts;
+                    const productIds = new Set(prev.map((p) => p.id));
+                    const uniqueProducts = newProducts.filter(
+                        (p) => !productIds.has(p.id),
+                    );
+                    return [...prev, ...uniqueProducts];
+                });
+
+                // If we get fewer products than requested, we've reached the end
+                setHasMore(newProducts.length === PRODUCTS_PER_PAGE);
+
                 setIsResetting(false);
             } catch (error) {
                 if (ProductApi.isAxiosError(error)) {
@@ -85,9 +91,11 @@ export default function ProductList() {
         },
         [page, category, price],
     );
+
     useEffect(() => {
         loadProducts();
     }, [loadProducts]);
+
     useEffect(() => {
         const loadListCategory = async () => {
             try {
@@ -116,6 +124,7 @@ export default function ProductList() {
 
         loadListCategory();
     }, []);
+
     function handleSelectCategory(option) {
         setProducts([]);
         setSelectedCategory(option);
@@ -123,6 +132,7 @@ export default function ProductList() {
         setPage(1);
         setIsResetting(true);
     }
+
     function handleClear() {
         setCategory(0);
         setPrice(["", ""]);
@@ -131,14 +141,17 @@ export default function ProductList() {
         setPage(1);
         setIsResetting(true);
     }
+
     function handleMinPrice(e) {
         setPrice([e.target.value, price[1]]);
     }
+
     function handleMaxPrice(e) {
         setProducts([]);
         setPrice([price[0], e.target.value]);
         setIsResetting(true);
     }
+
     return (
         <div className="flex min-h-screen md:mt-0 mt-14">
             {/* Mobile Filter */}

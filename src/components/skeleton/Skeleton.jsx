@@ -206,7 +206,7 @@ export default function Skeleton({ type, isDetail }) {
 
         return (
             <Case>
-                <h3 class="hidden pt-15 md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
+                <h3 className="hidden pt-15 md:block lg:block text-2xl font-extrabold text-center text-neutral-700 dark:text-white mb-12">
                     Demo Projects
                 </h3>
                 <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
