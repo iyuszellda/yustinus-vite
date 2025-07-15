@@ -25,43 +25,6 @@ export default function Footer() {
                             </svg>
                         </span>
                     </Link>
-                    {/* <Link
-                        aria-label="x"
-                        to="#!"
-                        target="_blank"
-                        type="button"
-                        className="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out dark:hover:bg-neutral-700 hover:bg-neutral-300 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900"
-                        data-twe-ripple-init
-                    >
-                        <span className="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 512 512"
-                            >
-                                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-                            </svg>
-                        </span>
-                    </Link> */}
-                    {/* <Link
-                        aria-label="mail"
-                        to="#!"
-                        target="_blank"
-                        type="button"
-                        className="rounded-full bg-transparent p-3 font-medium uppercase leading-normal text-surface transition duration-150 ease-in-out dark:hover:bg-neutral-700 hover:bg-neutral-300 focus:outline-none focus:ring-0 dark:text-white dark:hover:bg-secondary-900"
-                        data-twe-ripple-init
-                    >
-                        <span className="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"></path>
-                                <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"></path>
-                            </svg>
-                        </span>
-                    </Link> */}
                     <Link
                         aria-label="instagram"
                         to="https://www.instagram.com/yustinus_margiyuna"
@@ -120,8 +83,8 @@ export default function Footer() {
             </div>
             <div className="w-full p-4 text-center text-neutral-800 dark:text-neutral-200">
                 <p className="text-sm flex justify-center space-x-2 text-neutral-800 dark:text-neutral-200">
-                    Thank's to Chat GPT, Copilot, Platzi Fake Store API for
-                    providing the inspiration and resources to create these
+                    Thank's to Chat GPT, Deepseek, Copilot, Platzi Fake Store
+                    API for the inspiration and resources to create these
                     application.
                 </p>
             </div>

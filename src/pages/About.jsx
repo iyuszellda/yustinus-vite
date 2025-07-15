@@ -7,18 +7,18 @@ export default function About() {
                     About this website.
                 </h4>
                 <p className="text-sm tracking-wide leading-relaxed text-neutral-700 dark:text-neutral-300">
-                    I'm building this website that uses a JavaScript library for
-                    interfaces.
+                    I'm building this website that uses a JavaScript as Frontend
+                    and Laravel as Backend.
                 </p>
                 <p className="text-sm tracking-wide leading-relaxed text-neutral-800 dark:text-neutral-300">
-                    This website is built with Vite + React and styled using
-                    Tailwind CSS. The Navbar and Footer use the Roboto font,
-                    while the main sections use Poppins. The design is
+                    This website is built with Vite + React + Laravel and styled
+                    using Tailwind CSS. The Navbar and Footer use the Roboto
+                    font, while the main sections use Poppins. The design is
                     responsive, ensuring a seamless experience across devices.
                     The website features a clean and modern layout, with a focus
-                    on usability and accessibility. It includes a dark mode
-                    toggle for enhanced user experience in different lighting
-                    conditions.
+                    on usability and accessibility. It includes light and dark
+                    mode toggle for enhanced user experience in different
+                    lighting conditions.
                 </p>
                 <p className="text-sm tracking-wide leading-relaxed text-neutral-800 dark:text-neutral-300">
                     The content is structured to provide clear information about
