@@ -52,7 +52,7 @@ export default function ProductList() {
                     limit: limit,
                 };
 
-                const response = await ProductApi.get(`/products/`, {
+                const response = await ProductApi.get(`/api/v1/products/`, {
                     params,
                 });
 
@@ -99,7 +99,7 @@ export default function ProductList() {
     useEffect(() => {
         const loadListCategory = async () => {
             try {
-                const response = await ProductApi.get("/categories");
+                const response = await ProductApi.get("/api/v1/categories");
                 setOptionCategory(
                     response.data.map((c) => ({
                         value: c.id,

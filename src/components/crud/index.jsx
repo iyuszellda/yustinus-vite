@@ -52,7 +52,7 @@ export default function ProductTable() {
         const fetchProducts = async () => {
             setLoading(true);
             try {
-                const response = await ProductApi.get("/products", {
+                const response = await ProductApi.get("/api/v1/products", {
                     params: {
                         offset: (page - 1) * PAGE_LIMIT,
                         limit: PAGE_LIMIT,
@@ -76,7 +76,7 @@ export default function ProductTable() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await ProductApi.get("/categories");
+                const response = await ProductApi.get("/api/v1/categories");
                 setCategories(response.data);
             } catch (error) {
                 console.error("Error fetching categories:", error);
@@ -101,7 +101,7 @@ export default function ProductTable() {
     const handleSave = async (data) => {
         try {
             if (data.id) {
-                await ProductApi.put(`/products/${data.id}`, data);
+                await ProductApi.put(`/api/v1/products/${data.id}`, data);
                 setProducts((prev) =>
                     prev.map((product) =>
                         product.id === data.id
@@ -110,7 +110,10 @@ export default function ProductTable() {
                     ),
                 );
             } else {
-                const response = await ProductApi.post(`/products`, data);
+                const response = await ProductApi.post(
+                    `/api/v1/products`,
+                    data,
+                );
                 setProducts((prev) => [{ ...response.data }, ...prev]);
             }
 
@@ -125,7 +128,7 @@ export default function ProductTable() {
             return;
 
         try {
-            await ProductApi.delete(`/products/${productId}`);
+            await ProductApi.delete(`/api/v1/products/${productId}`);
             setProducts((prev) =>
                 prev.filter((product) => product.id !== productId),
             );

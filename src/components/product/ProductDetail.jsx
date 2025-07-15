@@ -17,7 +17,7 @@ export default function ProductDetail() {
         const fetchProduct = async () => {
             setLoading(true);
             try {
-                const { data } = await ProductApi.get(`/products/${id}`);
+                const { data } = await ProductApi.get(`/api/v1/products/${id}`);
                 setProduct(data);
                 setMainImage(data.images?.[0] || "");
             } catch (error) {

@@ -26,7 +26,7 @@ const ModalForm = ({
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await ProductApi.get("/products");
+                const response = await ProductApi.get("/api/v1/products");
                 setOptionImage(
                     response.data.map((c) => ({
                         value: c.id,
