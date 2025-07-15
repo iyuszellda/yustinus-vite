@@ -47,7 +47,6 @@ export default function SkeletonCard({ isDetail, isProduct }) {
                 <div className="space-y-1">
                     <div className="h-3 w-full bg-neutral-300 dark:bg-neutral-600 rounded"></div>
                     <div className="h-3 w-5/6 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
-                    <div className="h-3 w-2/3 bg-neutral-300 dark:bg-neutral-600 rounded"></div>
                 </div>
             </div>
         </div>

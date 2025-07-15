@@ -24,10 +24,10 @@ export default function ProductCard({ product, index }) {
                     </div>
                 </div>
                 <div className="px-4 py-3">
-                    <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 truncate">
+                    <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 line-clamp-1">
                         {product.title}
                     </h3>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-200 truncate">
+                    <p className="text-xs text-neutral-500 dark:text-neutral-200 line-clamp-2">
                         {product.description}
                     </p>
                 </div>
