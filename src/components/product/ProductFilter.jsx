@@ -89,10 +89,7 @@ export default function ProductFilterMobile({
                         </div>
 
                         <div className="mb-6">
-                            <label
-                                htmlFor="min-max"
-                                className="block text-sm font-medium text-gray-700 dark:text-white mb-2"
-                            >
+                            <label className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                                 Price Range
                             </label>
                             <div className="flex gap-2 items-center">
@@ -187,10 +184,7 @@ export default function ProductFilterMobile({
                     />
                 </div>
                 <div className="mb-6">
-                    <label
-                        htmlFor="min-max"
-                        className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-2"
-                    >
+                    <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-2">
                         Price Range
                     </label>
                     <div className="flex gap-2 items-center">
