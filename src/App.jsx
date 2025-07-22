@@ -11,12 +11,12 @@ const ScrollToTop = lazy(() => import("./ScrollToTop"));
 
 export default function App() {
     // init first theme
+    const currPage = window.location.href.split("/").pop();
     const lastTheme = localStorage.getItem("theme") === null ? true : false;
 
     const [page, setPage] = useState(currPage);
     const [loading, setLoading] = useState(true);
     const [theme, setTheme] = useState(lastTheme);
-    const currPage = window.location.href.split("/").pop();
 
     const loadingOnClick = async (load) => {
         load && setLoading(load);
