@@ -5,7 +5,7 @@ import ProductApi from "@/lib/api/productApi";
 import Skeleton from "@/components/skeleton/Skeleton";
 import useIsAtBottom from "@/hooks/useIsAtBottom";
 
-const PRODUCTS_PER_PAGE = 8;
+const PRODUCTS_PER_PAGE = 10;
 
 export default function ProductList() {
     const observerRef = useRef();

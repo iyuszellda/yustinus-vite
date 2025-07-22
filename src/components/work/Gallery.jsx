@@ -7,11 +7,11 @@ import SkeletonImage from "@/components/skeleton/SkeletonImage";
 import WorksApi from "@/lib/json/works.json";
 
 export default function Gallery() {
+    const navigate = useNavigate();
     const { companyId, appId } = useParams();
     const [gallery, setGallery] = useState(null);
-    const [mainImage, setMainImage] = useState("");
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
+    const [mainImage, setMainImage] = useState("");
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -33,6 +33,7 @@ export default function Gallery() {
         };
         fetchProduct();
     }, [companyId, appId]);
+
     if (loading) {
         return <Skeleton type={"gallery"} isDetail={true} />;
     }
@@ -44,24 +45,21 @@ export default function Gallery() {
 
     if (!gallery) {
         return (
-            <>
-                <div className="p-10 text-center text-neutral-500">
-                    Gallery not found.
-                    <button
-                        aria-label="back to list work"
-                        onClick={goBack}
-                        className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
-                    >
-                        ← Go Back
-                    </button>
-                </div>
-            </>
+            <div className="p-10 text-center text-neutral-500">
+                Gallery not found.
+                <button
+                    aria-label="back to list work"
+                    onClick={goBack}
+                    className="px-4 py-2 bg-neutral-200 dark:bg-neutral-200 hover:bg-neutral-300 rounded-full text-neutral-800"
+                >
+                    ← Go Back
+                </button>
+            </div>
         );
     }
 
     return (
         <>
-            {/* Back Button */}
             <div className="items-center justify-between mb-4 md:block hidden">
                 <motion.button
                     onClick={goBack}

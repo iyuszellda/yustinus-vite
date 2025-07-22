@@ -11,10 +11,6 @@ const ModalForm = ({
     onClose,
     onSave,
 }) => {
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [optionImage, setOptionImage] = useState();
-    const [selectedCategory, setSelectedCategory] = useState(null);
-    const [optionCategory, setOptionCategory] = useState(null);
     const [productData, setProductData] = useState({
         title: "",
         price: "",
@@ -22,6 +18,10 @@ const ModalForm = ({
         images: "",
         categoryId: "",
     });
+    const [optionImage, setOptionImage] = useState();
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [optionCategory, setOptionCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
     useEffect(() => {
         const fetchProducts = async () => {

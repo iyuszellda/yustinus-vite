@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SkeletonImage from "@/components/skeleton/SkeletonImage";
 
-export default function ProductCard({ product, index }) {
+export default function ProductCard({ product }) {
     return (
         <div
             initial={{ opacity: 0 }}

@@ -9,17 +9,18 @@ import SkeletonImage from "@/components/skeleton/SkeletonImage";
 const PAGE_LIMIT = 5;
 
 export default function ProductTable() {
-    const [filterText, setFilterText] = useState("");
-    const [products, setProducts] = useState([]);
-    const [categories, setCategories] = useState([]);
+    const observer = useRef();
     const [page, setPage] = useState(1);
+    const [header, setHeader] = useState(1);
+    const [products, setProducts] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const [filterText, setFilterText] = useState("");
+    const [categories, setCategories] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentProduct, setCurrentProduct] = useState({});
-    const [header, setHeader] = useState(1);
-    const observer = useRef();
-    const [isMobile, setIsMobile] = useState(false);
+
     const filteredProducts = products.filter((product) =>
         product.title.toLowerCase().includes(filterText.toLowerCase()),
     );
